@@ -1,0 +1,65 @@
+/* Global font and color themes */
+:root {
+  --font-family: "Gideon Roman", serif;
+  --background-color-main: #121212;
+  --background-color-alternate: #5b92e5;
+  --text-color-main: white;
+  --text-color-alternate: #5b92e5;
+  --container-background: #16213e;
+  --button-background: #0f3460;
+  --button-hover-background: #5b92e5;
+  --border-radius: 5px;
+  --header-footer-background: #333;
+  --main-padding: 20px;
+  --header-padding: 0.5rem 1rem;
+  --header-left-padding: 150px;
+  --link-hover-decoration: underline;
+  --icon-size: 20px;
+  --logo-size: 80px;
+  --logo-font-size: 2.5rem;
+  --logo-font-color: #5b92e5;
+  --underline-height: 1px;
+  --underline-width: 150px;
+  --underline-color: #5b92e5;
+  --info-block-min-width: 18vw;
+  --info-block-max-width: 22vw;
+  --info-block-min-height: 8vw;
+  --info-icon-size: 50px;
+  --heading-color: #5b92e5;
+  --paragraph-line-height: 1.6;
+  --button-padding: 10px 20px;
+  --button-font-size: 16px;
+  --input-width: 50px;
+  --input-padding: 10px;
+  --carousel-max-width: 500px;
+  --carousel-width: 80vw;
+  --thumbnail-size: 15%;
+  --video-section-margin: 10px 50px;
+  --video-height: calc(60vh - 50px);
+  --italic-heading-color: #ffffff;
+  --list-indent: 20px;
+  --list-item-spacing: 10px;
+  --fade-in-animation: fadeIn 2s;
+}
+
+html, body {
+  height: 100%;
+}
+
+main {
+  flex: 1; /* Allows main to grow and take available space */
+  display: flex;
+  flex-direction: column;
+  padding-bottom: 50px; /* Ensures space at the bottom */
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh; /* Ensure the body takes the full height of the viewport */
+  margin: 0;
+  padding: 0;
+  font-family: var(--font-family);
+  background-color: var(--background-color-main);
+  color: var(--text-color-main);
+}

@@ -1,0 +1,292 @@
+/**********************************************************
+ * Container: #calendar-app
+ * - 80% viewport width & height
+ * - Flex column layout so nav is on top, grid below
+ **********************************************************/
+ #calendar-app {
+    /* Center on page and take up 80% of viewport */
+    margin: 0 auto;
+    max-height: 80vh;
+  
+    /* Visual styles */
+    border: 2px solid gold;
+    border-radius: 8px;
+    box-sizing: border-box;
+  
+    /* Layout: top nav + weekdays + flexible grid */
+    display: flex;
+    flex-direction: column;
+    overflow: hidden; /* prevent overflow if window is small */
+  }
+  
+  /**********************************************************
+   * NAV BAR
+   **********************************************************/
+  .calendar-nav {
+    color: #000000;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+    width: 100%;
+  }
+  
+  .calendar-nav button {
+    background-color: #4285f4;
+    color: white;
+    border: none;
+    padding: 8px 12px;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  .calendar-nav button:hover {
+    background-color: #357ae8;
+  }
+  
+  .current-month-year {
+    font-size: 1.2rem;
+    font-weight: bold;
+  }
+  
+  /**********************************************************
+   * WEEKDAYS HEADER (Sun - Sat)
+   **********************************************************/
+  .calendar-weekdays {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    text-align: center;
+    font-weight: bold;
+    padding: 8px 0;
+    background-color: #f5f5f5;
+    color: black;
+    border-bottom: 1px solid #ddd;
+  }
+  .weekday {
+    padding: 5px;
+    font-size: 0.9rem;
+  }
+  
+  /**********************************************************
+   * CALENDAR GRID (the 6 possible weeks of day-cells)
+   * - We use flex so each "week" is a row of 7 columns.
+   * - .calendar-row is the "week," containing 7 day-cells.
+   **********************************************************/
+  .calendar-grid {
+    /* This will expand to fill the remaining vertical space */
+    flex: 1;
+    display: flex;
+    flex-direction: column; /* Each row is stacked vertically */
+    gap: 2px;               /* Small gap between rows */
+    flex-grow: 1; /* Occupy the remaining space in #calendar-app */
+    transition: opacity 0.3s ease-in-out; /* for fade in/out */
+  }
+  
+  /* For fade animations */
+  .calendar-grid.fade-out {
+    opacity: 0;
+  }
+  .calendar-grid.fade-in {
+    opacity: 1;
+  }
+  
+  /**********************************************************
+   * A single "week" row in the grid
+   **********************************************************/
+   .calendar-row {
+        height:12vh;
+        display: grid;
+        grid-template-columns: repeat(7, 1fr); /* 7 equal columns */
+        gap: 2px; /* Gap between day-cells */
+    }
+  /**********************************************************
+   * CALENDAR CELL (one day)
+   **********************************************************/
+    .calendar-cell {
+        flex: 1; /* Ensure the cells fill their container row height */
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: space-between;
+        border: 1px solid #ddd;
+        padding: 10px;
+        box-sizing: border-box;
+        font-size: 0.9rem;
+        cursor: pointer;
+        position: relative;
+        overflow: visible; /* or at least don't let .calendar-cell or a parent clip it */
+        background-color: white;
+        color: black;
+        width: 100%; /* Ensure the cell scales properly in width */
+    }
+  
+  /* Hover highlight */
+  .calendar-cell:hover {
+    background-color: #f0f0f0;
+  }
+  
+  /* "Disabled" days (prev/next month overlap) */
+  .calendar-cell.disabled {
+    font-weight: 600;
+    background-color: #b3b3b3;
+    color: #000000;
+    pointer-events: none;
+  }
+
+/**********************************************************
+  * Tooltip Popup
+**********************************************************/
+.cell-tooltip-popup {
+  display: none; /* Initially hidden */
+  position: absolute; /* Positioned globally */
+  width: 200px;
+  background-color: white;
+  color: black;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  padding: 10px;
+  font-size: 0.9rem;
+  z-index: 1000;
+  visibility: visible;
+  opacity: 1;
+  transition: opacity 0.2s ease-in-out;
+}
+
+.cell-tooltip-popup.above {
+  transform: translateY(-15px); /* Add a slight offset for "above" tooltips */
+}
+
+.cell-tooltip-popup.below {
+  transform: translateY(5px); /* Add a slight offset for "below" tooltips */
+}
+
+  /**********************************************************
+   * WEEKENDS, Busy, Partial, Full, etc.
+   **********************************************************/
+  .calendar-cell.weekend {
+    background-color: #f1f8ff;
+  }
+  .calendar-cell.busy {
+    background-color: #ffc1c1;
+    pointer-events: none;
+  }
+  .calendar-cell.partial-schedule {
+    background-color: #ffcc99; /* Light orange for partially booked days */
+  }
+  .calendar-cell.full-schedule {
+    background-color: #ff9999; /* Red for fully booked days */
+    color: white;
+  }
+  
+  /* Additional indicator if day has any appointments */
+  .calendar-cell.has-appointments {
+    border: 2px dotted #ffc1c1;
+  }
+
+  .calendar-cell.proximity-green {
+    background-color: #d4edda; /* Light green */
+    color: #155724;
+  }
+  
+  .calendar-cell.proximity-red {
+    background-color: #f8d7da; /* Light red */
+    color: #721c24;
+  }
+  
+  /**********************************************************
+   * CITY LABELS (stacked vertically at the bottom)
+   **********************************************************/
+  .day-city-labels {
+    margin-top: 4px;
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* center horizontally */
+    gap: 2px;
+    font-size: 0.9rem;
+    font-weight: 600;
+  }
+  
+  /* City "badge" */
+  .city-badge {
+    background-color: #ffebcc;
+    color: #333;
+    padding: 2px 4px;
+    border-radius: 4px;
+    white-space: nowrap;
+  }
+
+  .day-selected-labels {
+    display: flex;
+    flex-direction: column; /* stack vertically */
+    gap: 2px;               /* small spacing between lines */
+    align-items: center;    /* or flex-start, if you prefer left alignment */
+  }
+  
+  .selected-slot-badge {
+    display: block;   /* ensures each badge is on its own line */
+    background-color: #e7f3ff;
+    padding: 3px 6px;
+    border-radius: 4px;
+    font-size: 0.9rem;
+    color: #333;
+  }
+  
+  /**********************************************************
+   * TIME SLOT POPUP
+   **********************************************************/
+  .time-slot-popup {
+    position: absolute;
+    width: 250px;
+    background-color: white;
+    color: black;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 10px;
+    z-index: 1000;
+    display: none;
+  }
+  
+  .time-slot-popup h4 {
+    margin: 0 0 10px;
+    font-size: 1rem;
+    font-weight: bold;
+    color: #333;
+  }
+  
+  .time-slot-popup .time-slot {
+    padding: 5px 10px;
+    cursor: pointer;
+    border-radius: 4px;
+    margin-bottom: 5px;
+  }
+  .time-slot-popup .time-slot.busy {
+    background-color: #ffc1c1;
+    cursor: not-allowed;
+  }
+  .time-slot-popup .time-slot:hover:not(.busy) {
+    background-color: #f0f0f0;
+  }
+
+  /* Highlight selected time-slot */
+  .time-slot.selected {
+    background-color: #27ae60 !important;
+    color: #fff;
+    font-weight: bold;
+  }
+
+  /* If you want to highlight the entire date cell in the calendar-grid */
+  .calendar-cell.selected-date {
+    background-color: #2ecc71;
+    color: #fff;
+  }
+
+  /* Adjust the vertical alignment */
+.time-slot-popup.above {
+  transform: translateY(-15px); /* Slight offset for "above" tooltips */
+}
+
+.time-slot-popup.below {
+  transform: translateY(5px); /* Slight offset for "below" tooltips */
+}
+

@@ -1,0 +1,172 @@
+/* Index Landing Page */
+#header-placeholder {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 1000;
+}
+
+/* Hero Section */
+#hero {
+  background-image: url('../../../assets/images/hero/lux.jpg');
+  background-size: cover;
+  background-position: center;
+  height: 95vh;
+  width: 100%; /* Ensures no scrollbar */
+  margin: 0;
+  padding: 0;
+  overflow: hidden; /* Prevents any content overflow */
+  color: white;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+
+.hero-content {
+  background-color: rgba(0, 0, 0, 0.7);
+  padding: 30px;
+  border-radius: 10px;
+  text-align: center;
+}
+
+#hero h1 {
+  font-size: 3rem;
+  color: gold;
+}
+
+.hero-buttons {
+  margin-top: 20px;
+}
+
+.hero-btn {
+  background-color: gold;
+  color: #1c1c1c;
+  padding: 15px 25px;
+  text-decoration: none;
+  font-size: 1.2rem;
+  font-weight: bold;
+  border-radius: 5px;
+  margin: 0 10px;
+  transition: background-color 0.3s ease;
+}
+
+.hero-btn:hover {
+  background-color: #d4af37;
+}
+
+/* Intro Section */
+#intro {
+  padding: 40px 20px;
+  background-color: #262626;
+  border: 2px solid gold;
+  border-radius: 10px;
+  margin: 40px auto;
+  text-align: center;
+  max-width: 800px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+}
+
+.intro-content h2 {
+  font-size: 2rem;
+  color: gold;
+  margin-bottom: 20px;
+}
+
+.intro-content p {
+  font-size: 1.2rem;
+  line-height: 1.8;
+  color: white;
+}
+
+/* Services Section */
+#services {
+  padding: 40px 0;
+  background-color: #1c1c1c;
+  color: white;
+  text-align: center;
+  overflow: hidden;
+}
+
+.services-header h2 {
+  font-size: 2.5rem;
+  color: gold;
+  margin-bottom: 10px;
+}
+
+.services-header p {
+  font-size: 1.2rem;
+  color: white;
+  margin-bottom: 30px;
+}
+
+.services-carousel {
+  display: flex;
+  gap: 20px;
+  overflow-x: auto;
+  padding: 20px;
+  justify-content: center; /* Centers the cards within the viewport */
+  scroll-behavior: smooth;
+}
+
+.carousel-item {
+  flex: 0 0 300px; /* Each card maintains a fixed width */
+  background-color: #262626;
+  border: 2px solid gold;
+  border-radius: 10px;
+  padding: 20px;
+  text-align: center;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.carousel-item:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+}
+
+.carousel-item h3 {
+  color: gold;
+  font-size: 1.5rem;
+  margin-bottom: 10px;
+}
+
+.carousel-item p {
+  font-size: 1rem;
+}
+
+/* Calendar Section */
+#calendar {
+  padding: 40px;
+  text-align: center;
+  color: white;
+  border-top: 2px solid gold;
+}
+
+.calendar-container h2 {
+  font-size: 2rem;
+  color: gold;
+  margin-bottom: 10px;
+}
+
+.calendar-container p {
+  font-size: 1.2rem;
+  margin-bottom: 20px;
+}
+
+#calendar-btn {
+  background-color: gold;
+  color: #1c1c1c;
+  padding: 15px 25px;
+  text-decoration: none;
+  font-size: 1.2rem;
+  font-weight: bold;
+  border-radius: 5px;
+  margin: 0 10px;
+  transition: background-color 0.3s ease;
+}
+
+#calendar-btn:hover {
+  background-color: #d4af37;
+}

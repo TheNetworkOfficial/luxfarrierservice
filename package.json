@@ -1,0 +1,45 @@
+{
+  "name": "luxfarrierservice",
+  "version": "1.0.0",
+  "main": "webpack.config.js",
+  "scripts": {
+    "start": "webpack serve --config webpack.config.js --mode development --open",
+    "build": "webpack --config webpack.config.js --mode production",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "devDependencies": {
+    "@babel/preset-env": "^7.26.0",
+    "autoprefixer": "^10.4.20",
+    "babel-loader": "^9.2.1",
+    "clean-webpack-plugin": "^4.0.0",
+    "css-loader": "^7.1.2",
+    "glob": "^11.0.0",
+    "globals": "^15.11.0",
+    "html-loader": "^5.1.0",
+    "html-webpack-plugin": "^5.6.3",
+    "mini-css-extract-plugin": "^2.9.2",
+    "postcss": "^8.4.47",
+    "rimraf": "^6.0.1",
+    "webpack": "^5.97.1",
+    "webpack-cli": "^5.1.4",
+    "webpack-dev-server": "^5.2.0"
+  },
+  "dependencies": {
+    "@aws-sdk/client-s3": "^3.738.0",
+    "@googleapis/calendar": "^9.7.9",
+    "@sendgrid/mail": "^8.1.4",
+    "axios": "^1.7.9",
+    "core-js": "^3.40.0",
+    "cors": "^2.8.5",
+    "dotenv": "^16.4.7",
+    "express-fileupload": "^1.5.1",
+    "googleapis": "^144.0.0",
+    "mongodb": "^6.12.0",
+    "mongoose": "^8.9.5",
+    "uuid": "^11.0.5"
+  }
+}

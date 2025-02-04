@@ -1,0 +1,70 @@
+/* normalize.css */
+html {
+  box-sizing: border-box;
+  font-size: 16px; /* Set default font size to 16px */
+}
+
+*,
+*:before,
+*:after {
+  box-sizing: inherit;
+  margin: 0;
+  padding: 0;
+}
+
+body,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+ol,
+ul {
+  margin: 0;
+  padding: 0;
+  font-weight: normal;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+button {
+  background: none;
+  border: none;
+  padding: 0;
+}
+
+button:focus {
+  outline: none;
+}
+
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+  -webkit-appearance: none; /* for Chrome, Safari */
+  margin: 0;
+}
+
+input[type="number"] {
+  -moz-appearance: textfield; /* for Firefox */
+}
+
+/* Global font and color themes */
+:root {
+  --font-family: Arial, sans-serif;
+  --background-color-main: #121212;
+  --text-color-main: white;
+  --container-background: #16213e;
+  --button-background: #0f3460;
+  --button-hover-background: #5b92e5;
+  --border-radius: 5px;
+}
+
+body {
+  font-family: var(--font-family);
+  background-color: var(--background-color-main);
+  color: var(--text-color-main);
+}

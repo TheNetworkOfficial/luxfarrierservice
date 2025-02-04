@@ -1,0 +1,28 @@
+/* Universal Button Styles */
+.btn, button.btn, a.btn {
+    font-family: var(--font-family);
+    font-weight: 600;
+    background-color: gold;
+    color: #000000;
+    padding: 15px 30px;
+    margin: 0 10px;
+    border: none;
+    cursor: pointer;
+    font-size: 20px;
+    border-radius: 5px;
+    text-decoration: none;
+    display: inline-block;
+    text-align: center;
+}
+
+.btn:hover, button.btn:hover, a.btn:hover {
+    background-color: goldenrod;
+}
+
+/* Specific Styles for Back and Next Buttons */
+.btn-back, .btn-next {
+    display: inline-block; /* Ensure consistency */
+}
+
+/* Additional button states if needed */
+/* .btn:disabled { ... } */

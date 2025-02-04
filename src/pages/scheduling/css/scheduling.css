@@ -1,0 +1,415 @@
+/****************************
+ * Appointment Scheduling Section
+ ****************************/
+ #appointment-scheduling {
+  width: 1200px;
+  min-height: 85vh;
+  margin: 0 auto;
+  padding: 10px 0px;
+}
+
+#appointment-scheduling h2 {
+  text-align: center;
+  font-size: 2rem;
+  color: gold;
+}
+
+/****************************
+ * Form Styles
+ ****************************/
+#appointmentForm {
+  background-color: #1c1c1c;
+  padding: 10px;
+  border-radius: 10px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+#appointmentForm fieldset {
+  border: none;
+  margin: 0;
+  padding: 0;
+}
+
+#appointmentForm legend {
+  display: none; /* Hidden as we're using separate headers */
+}
+
+.form-step {
+  /* Transition for smooth step changes */
+  transition: opacity 0.5s ease-in-out;
+}
+
+.form-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 40px;
+  margin-bottom: 20px;
+}
+
+.form-column {
+  flex: 1;
+  min-width: 280px;
+}
+
+.form-group {
+  margin-bottom: 20px;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 8px;
+  font-weight: 500;
+  color: #fff;
+}
+
+.form-group input[type="text"],
+.form-group input[type="email"],
+.form-group input[type="tel"],
+.form-group input[type="number"],
+.form-group input[type="date"],
+.form-group select,
+.form-group textarea {
+  width: 100%;
+  padding: 12px 15px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  font-size: 1rem;
+  transition: border-color 0.3s;
+}
+
+.form-group input[type="text"]:focus,
+.form-group input[type="email"]:focus,
+.form-group input[type="tel"]:focus,
+.form-group input[type="number"]:focus,
+.form-group input[type="date"]:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+  border-color: #2980b9;
+  outline: none;
+}
+
+.required-asterisk {
+  color: #e74c3c;
+  margin-left: 4px;
+  font-weight: bold;
+}
+
+/* Error message styling */
+.error-message {
+  font-size: 0.875rem;
+  color: #e74c3c;
+  margin-top: 5px;
+  display: none;
+}
+
+/****************************
+ * Horse Information Styles
+ ****************************/
+#horse-info-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.horse-info-block {
+  background-color: #262626;
+  padding: 20px;
+  border-radius: 8px;
+  position: relative;
+  flex: 1 1 300px;
+}
+
+.horse-info-columns {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+  align-items: end;
+}
+
+.horse-info-columns .form-group {
+  margin-bottom: 15px;
+}
+
+.horse-info-block .remove-horse-btn {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  background: transparent;
+  border: none;
+  font-size: 1.2rem;
+  color: #c0392b;
+  cursor: pointer;
+  transition: color 0.3s;
+}
+
+.horse-info-block .remove-horse-btn:hover {
+  color: #e74c3c;
+}
+
+.conditional-group {
+  display: none;
+  margin-top: 10px;
+}
+
+.laminitis-details,
+.special-needs-details {
+  margin-top: 10px;
+}
+
+.form-group select[name="laminitisHistory[]"]:valid ~ .laminitis-details,
+.form-group select[name="specialNeedsHistory[]"]:valid ~ .special-needs-details {
+  display: block;
+}
+
+.laminitis-details .form-group,
+.special-needs-details .form-group {
+  margin-bottom: 15px;
+}
+
+/* Special styles for file upload */
+.form-group input[type="file"] {
+  padding: 5px;
+}
+
+.btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 12px 20px;
+  border: none;
+  border-radius: 6px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.btn-add-horse {
+  background-color: #27ae60;
+  color: #fff;
+}
+
+.btn-add-horse:hover {
+  background-color: #2ecc71;
+}
+
+.btn-next {
+  background-color: #2980b9;
+  color: #fff;
+  display: flex;
+  gap: 8px;
+}
+
+.btn-next:hover {
+  background-color: #3498db;
+}
+
+.btn-next[disabled],
+.btn-next[disabled]:hover {
+  background-color: #95a5a6;
+  cursor: not-allowed;
+}
+
+.btn-back {
+  background-color: #7f8c8d;
+  color: #fff;
+}
+
+.btn-back:hover {
+  background-color: #95a5a6;
+}
+
+.btn-submit {
+  background-color: #27ae60;
+  color: #fff;
+}
+
+.btn-submit:hover {
+  background-color: #2ecc71;
+}
+
+.btn-submit[disabled],
+.btn-submit[disabled]:hover {
+  background-color: #95a5a6;
+  cursor: not-allowed;
+}
+
+/****************************
+ * Form Navigation Styles
+ ****************************/
+ .form-navigation {
+  display: flex;
+  justify-content: space-between;
+  align-items: center; /* Vertically center the buttons */
+  margin-top: 10px;
+}
+
+.form-navigation button {
+  flex: 0 0 auto; /* Prevent buttons from stretching */
+}
+
+/* Align "Next" button to the right in Step 1 */
+#step-1 .form-navigation {
+  justify-content: flex-end;
+}
+
+/****************************
+ * Disclaimer Styles
+ ****************************/
+.disclaimer {
+  margin-top: 30px;
+  font-size: 0.9rem;
+  color: #7f8c8d;
+  text-align: center;
+}
+
+/****************************
+ * Calendar App Styles
+ ****************************/
+#calendar-ui {
+  /* Placeholder styling */
+  background-color: #ecf0f1;
+  padding: 20px;
+  border-radius: 8px;
+}
+
+.calendar-instructions {
+  color: #fff;
+  margin-bottom: 20px;
+  background-color: #333;
+  padding: 10px 15px;
+  border-radius: 6px;
+  font-size: 1rem;
+}
+
+/****************************
+ * Step 4 summary container
+ ****************************/
+#review-details {
+  background-color: #262626;
+  padding: 15px 30px;
+  border-radius: 10px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+
+/* Header Styling */
+#review-details h4 {
+  color: gold;
+  font-size: 1.5rem;
+  margin-bottom: 10px;
+  margin-top: 0px;
+}
+
+/* Adjust the Horizontal Rules */
+#review-details hr {
+  border: none;
+  border-top: 1px solid #ccc;
+  margin: 12px 0;
+}
+
+/* Optional: Ensure Headers Are Not Part of Grid */
+.review-horses-grid h4 {
+  grid-column: 1 / -1; /* Span all columns if accidentally placed */
+}
+
+#review-details p {
+  font-size: 1rem;
+  line-height: 1.6;
+  padding-bottom: 12px;
+}
+
+/* Container for Client Information in Review */
+.review-client-info {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+/* Individual Columns for Client Information */
+.review-client-info .client-info-column {
+  flex: 1;
+  min-width: 280px;
+}
+
+/* Container for Horses in Review */
+.review-horses-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: 20px;
+  margin: 20px 0px 5px;
+}
+
+/* Individual Horse Card in Review */
+.review-horse-card {
+  background-color: #333;
+  padding: 15px;
+  border-radius: 8px;
+  color: #fff;
+}
+
+/* Container for Appointment Slots in Review */
+.review-appointments-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  margin-top: 15px;
+}
+
+/* Individual Appointment Card */
+.review-appointment-card {
+  background-color: #333;
+  padding: 12px;
+  border-radius: 8px;
+  color: #fff;
+  flex: 1 1 calc(33.333% - 20px); /* Three cards per row with gap */
+  box-sizing: border-box;
+  min-width: 250px; /* Ensures cards don't get too small */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.review-appointment-card p {
+  margin: 5px 0;
+}
+
+/* Edit Buttons Styling */
+#review-details .edit-section {
+  background-color: gold;
+  color: #000000;
+  padding: 10px 15px; /* Adjusted padding */
+  border-radius: 5px;
+  display: block; /* Ensure buttons are block-level */
+  width: auto; /* Allow buttons to size based on content */
+  margin: 0px; /* Add vertical spacing */
+  font-size: 1rem; /* Ensure readable font size */
+  cursor: pointer; /* Ensure pointer cursor */
+}
+
+#review-details .edit-section:hover {
+  background-color: goldenrod;
+}
+
+
+/****************************
+ * Responsive Design
+ ****************************/
+@media (max-width: 768px) {
+  .form-row {
+    flex-direction: column;
+  }
+
+  .form-column {
+    min-width: 100%;
+  }
+
+  #horse-info-container {
+    flex-direction: column;
+  }
+
+  .form-navigation {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .form-navigation button {
+    width: 100%;
+  }
+}

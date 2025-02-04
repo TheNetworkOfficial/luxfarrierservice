@@ -1,0 +1,44 @@
+/* Confirmation Section */
+#confirmation {
+    padding: 40px 20px;
+    background-color: #262626; /* dark gray to match your other sections */
+    border: 2px solid gold;
+    border-radius: 10px;
+    margin: 60px auto;
+    max-width: 800px;
+    text-align: center;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+  }
+  
+  .confirmation-content h1 {
+    color: gold;
+    font-size: 2rem;
+    margin-bottom: 20px;
+  }
+  
+  .confirmation-content p {
+    color: white;
+    font-size: 1.2rem;
+    line-height: 1.6;
+    margin-bottom: 1rem;
+  }
+  
+  .confirmation-buttons {
+    margin-top: 20px;
+  }
+  
+  .confirmation-buttons a.hero-btn {
+    background-color: gold;
+    color: #1c1c1c;
+    padding: 15px 25px;
+    text-decoration: none;
+    font-size: 1.2rem;
+    font-weight: bold;
+    border-radius: 5px;
+    margin: 0 10px;
+    transition: background-color 0.3s ease;
+  }
+  
+  .confirmation-buttons a.hero-btn:hover {
+    background-color: #d4af37;
+  }

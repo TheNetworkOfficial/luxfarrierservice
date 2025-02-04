@@ -1,0 +1,110 @@
+/* Header styles */
+/* Navbar Styles */
+.site-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 20px;
+  background-color: #1f1f1f;
+}
+
+.logo-wrapper {
+  margin-left: 4rem;
+  display: flex;
+  align-items: center;
+  flex: 0 0 auto; /* Do not grow, do not shrink, and base size on the content */
+}
+
+.logo-link {
+  display: flex;
+  align-items: center;
+  text-decoration: none; /* Removes underline from link */
+  color: inherit; /* Inherits the color from the parent element */
+}
+
+.logo-image {
+  height: 80px;
+  width: 80px;
+  border-radius: 50%; /* Makes it circular */
+  object-fit: cover; /* Ensures the image covers the area without stretching */
+}
+
+.logo-title {
+  margin-left: 1rem;
+  font-size: 3rem;
+  font-weight: bold;
+  display: flex;
+  align-items: center; /* Centers text vertically */
+}
+
+.nav-and-toolkit {
+  display: flex;
+  align-items: center;
+}
+
+.navigation {
+  margin-right: 4rem;
+  list-style: none;
+  display: flex;
+  align-items: center;
+}
+
+.navigation li {
+  margin-left: 20px;
+  font-size: 1.25rem;
+  position: relative;
+}
+
+.navigation a {
+  color: #fff;
+  text-decoration: none;
+  font-weight: 600;
+  display: flex; /* Make the entire link block interactable */
+  align-items: center; /* Center the caret icon and text */
+  padding: 10px; /* Add padding to expand hover area */
+}
+
+.btn-login {
+  background-color: #ff6f61;
+  padding: 10px 20px;
+  border-radius: 5px;
+}
+
+.btn-login:hover {
+  background-color: #ff5a4d;
+}
+
+/* Dropdown Menu Styles */
+.dropdown:hover .dropdown-content {
+  display: block;
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  top: 100%; /* Ensure dropdown appears below the dropdown trigger */
+  left: 0;
+  background-color: #2c2c2c;
+  padding: 10px;
+  border-radius: 5px;
+  min-width: 200px; /* Ensure dropdown content is wide enough */
+}
+
+.dropdown-content li {
+  margin: 0;
+}
+
+.dropdown-content a {
+  color: #fff;
+  display: block;
+  padding: 5px 10px;
+}
+
+.dropdown-content a:hover {
+  background-color: #1f1f1f;
+}
+
+/* Mobile Menu Toggle Styles */
+.mobile-menu-toggle {
+  display: none; /* Assuming it will be visible only on mobile with further media query */
+}

@@ -1,0 +1,241 @@
+/* BASIC RESET FOR <servicesMain> */
+servicesMain {
+  margin-top: 100px; /* Offset below fixed header if you have one */
+  display: block;
+  width: 100%;
+  background-color: #1c1c1c;
+}
+
+/* SECTION BACKGROUND & TEXT */
+#services {
+  background-color: #1c1c1c;
+  color: white;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+/* Heading at the top of the section */
+.services-header {
+  text-align: center;
+  margin-bottom: 30px;
+}
+.services-header h2 {
+  font-size: 2.5rem;
+  color: gold;
+  margin-bottom: 10px;
+}
+.services-header p {
+  font-size: 1.2rem;
+  color: white;
+}
+
+/* FLEX CONTAINER for the 2 columns (grid + sidebar) */
+.services-flex {
+  display: flex;           /* Side-by-side columns */
+  align-items: stretch;    /* Both columns match height */
+  gap: 20px;
+  justify-content: center; /* Center the entire .services-grid + sidebar */
+}
+
+/* LEFT COLUMN: The services grid */
+.services-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr); /* 3 columns wide in the grid */
+  gap: 20px;
+  flex: 0.6;
+  background-color: #1c1c1c;
+}
+
+/* Each .grid-item inside the .services-grid */
+.grid-item {
+  background-color: #262626;
+  border: 2px solid gold;
+  border-radius: 10px;
+  padding: 20px;
+  text-align: center;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.grid-item:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+}
+
+/* Heading area inside each grid-item (optional min-height) */
+.grid-item-header {
+  min-height: 70px; /* Adjust if you have large headings/subheadings */
+}
+.grid-item-header h3 {
+  margin: 0 0 5px;
+  color: gold;
+  font-size: 1.5rem;
+}
+.grid-item-header h4 {
+  margin: 0 0 10px;
+  color: gold;
+  font-size: 1.2rem;
+}
+
+/* SINGLE leftover item in last row: stretch across all 3 columns */
+.services-grid .grid-item:nth-child(3n+1):last-child {
+  grid-column: 1 / -1; /* or "span 3" */
+}
+
+/* 
+   Service line:
+   - The .service-name (left) 
+   - The .service-actions (right, with price + icons)
+*/
+.service-line {
+  display: flex; 
+  justify-content: space-between; 
+  align-items: center;
+  margin: 5px 0;
+  font-size: 1rem;
+}
+
+/* Left side name */
+.service-name {
+  font-weight: bold;
+  text-align: left;
+}
+
+/* Right side: price + plus/minus icons, all on one line */
+.service-actions {
+  display: flex;
+  align-items: center;
+  gap: 8px;  /* space between them */
+}
+/* You can optionally style the price differently if desired */
+.price {
+  white-space: nowrap; /* Keep price from wrapping if it’s too long */
+}
+
+/* 2-column call fee listing */
+.call-fee-col .call-fee-locations {
+  columns: 2;
+  -webkit-columns: 2;
+  -moz-columns: 2;
+  column-gap: 20px;
+}
+/* Make the last line span across both columns */
+.call-fee-col .call-fee-locations .full-span {
+  column-span: all;
+  display: block;
+  margin-top: 1em;
+}
+
+/* RIGHT COLUMN: The sidebar */
+.services-sidebar {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  flex: 0.25;
+  border: 2px solid gold;
+  border-radius: 10px;
+  background-color: #1c1c1c;
+  padding: 20px;
+}
+
+/* Top/bottom boxes inside the sidebar */
+.top-box {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+h3 {
+margin: 0 0 5px;
+color: gold;
+font-size: 1.5rem;
+}
+
+/* Plus & Minus Icons */
+.add-to-calculator,
+.remove-from-calculator {
+  margin-left: 8px;
+  color: gold;
+  cursor: pointer;
+}
+.add-to-calculator:hover,
+.remove-from-calculator:hover {
+  color: #fff; /* highlight color on hover */
+}
+
+/* Optional: Style the cost-calc list */
+#cost-calc-items {
+  margin: 1em 0;
+  /* remove center align if you had it before */
+  /* We'll do a flex layout for each item line below */
+}
+
+/* Single row in the cost calculator */
+.calc-item-line {
+  display: flex;
+  justify-content: space-between; 
+  align-items: center;
+  margin: 5px 0; /* spacing between lines */
+  font-size: 1rem;
+}
+
+/* Left side: name + quantity */
+.calc-item-left {
+  font-weight: bold; 
+  text-align: left;
+}
+
+/* Right side: plus/minus icons + total price for that line */
+.calc-item-right {
+  display: flex;
+  align-items: center;
+  gap: 8px; /* space between icons & price */
+}
+
+/* Price style in the calculator */
+.calc-price {
+  white-space: nowrap; 
+  color: gold; /* or any color you like */
+  font-weight: normal;
+}
+
+/* The .calc-add / .calc-remove icons to increment or decrement quantity */
+.calc-add,
+.calc-remove {
+  margin-left: 4px; /* small spacing from each other or from price */
+  color: gold;
+  cursor: pointer;
+}
+
+.calc-add:hover,
+.calc-remove:hover {
+  color: #fff; /* highlight on hover */
+}
+
+#cost-calc-total {
+  color: gold;
+  font-size: 1.5rem;
+}
+
+/* "Schedule Now" button style */
+.schedule-now-btn {
+  background-color: gold;
+  color: #1c1c1c;
+  border: none;
+  padding: 10px 20px;
+  font-weight: bold;
+  font-size: 1rem;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+.schedule-now-btn:hover {
+  background-color: #e0cd48;
+}
+
+.bottom-box {
+  text-align: center;
+  margin-top: auto;
+}
+.bottom-box h3 {
+  color: gold;
+  font-size: 1.4rem;
+  margin-bottom: 10px;
+}
