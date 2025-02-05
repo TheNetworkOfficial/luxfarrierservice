@@ -1,6 +1,7 @@
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const { CleanWebpackPlugin } = require("clean-webpack-plugin");
+const CopyWebpackPlugin = require("copy-webpack-plugin");
 const path = require("path");
 
 module.exports = {
@@ -49,6 +50,14 @@ module.exports = {
     new CleanWebpackPlugin(),
     new MiniCssExtractPlugin({
       filename: "css/[name].[contenthash].css",
+    }),
+    new CopyWebpackPlugin({
+      patterns: [
+        {
+          from: "src/components/js/phone-type-formatter.us.js",
+          to: "components/js/phone-type-formatter.us.js"
+        }
+      ]
     }),
     new HtmlWebpackPlugin({
       template: "./src/components/header/header.html",
