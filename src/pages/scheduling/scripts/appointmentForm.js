@@ -507,7 +507,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 formDataToUpload.append('xray', fileInput.files[0]);
                 
                 // 1) Capture the response
-                const uploadResponse = await fetch('${API_BASE_URL}/api/upload-xray', {
+                const uploadResponse = await fetch(`${API_BASE_URL}/api/upload-xray`, {
                   method: 'POST',
                   body: formDataToUpload,
                 });
@@ -529,7 +529,7 @@ document.addEventListener('DOMContentLoaded', () => {
             });
 
             // 3. Submit appointment data
-            const response = await fetch('${API_BASE_URL}/api/appointments', {
+            const response = await fetch(`${API_BASE_URL}/api/appointments`, {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify(formData)

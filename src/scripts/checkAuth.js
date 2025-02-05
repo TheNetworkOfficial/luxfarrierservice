@@ -2,7 +2,7 @@
 import { API_BASE_URL } from '../config.js';
 
 // Check if user is logged in
-fetch("${API_BASE_URL}/api/profile", {
+fetch(`${API_BASE_URL}/api/profile`, {
   method: "GET",
   credentials: "include",
 })
