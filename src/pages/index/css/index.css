@@ -170,3 +170,153 @@
 #calendar-btn:hover {
   background-color: #d4af37;
 }
+
+/* Extra Small Devices (Portrait phones, less than 576px) */
+@media (max-width: 575.98px) {
+  /* Hero Section Adjustments */
+  #hero {
+    height: 70vh; /* slightly shorter on very small screens */
+  }
+  #hero h1 {
+    font-size: 1.8rem; /* reduce font size */
+  }
+  .hero-btn {
+    font-size: 1rem;
+    padding: 10px 20px;
+    margin: 5px 5px;
+  }
+
+  /* Intro Section Adjustments */
+  #intro {
+    padding: 20px 10px;
+    margin: 20px;
+  }
+  .intro-content h2 {
+    font-size: 1.5rem;
+  }
+  .intro-content p {
+    font-size: 1rem;
+  }
+
+  /* Carousel Adjustments */
+  .services-carousel {
+    flex-direction: column; /* stack carousel items */
+    gap: 10px;
+  }
+  .carousel-item {
+    flex: 0 0 auto;
+    width: 90%;
+    margin: 0 auto;
+    padding: 15px;
+  }
+
+  /* Calendar Section */
+  #calendar {
+    padding: 20px;
+  }
+  .calendar-container h2 {
+    font-size: 1.5rem;
+  }
+  .calendar-container p {
+    font-size: 1rem;
+  }
+}
+
+/* Small Devices (Landscape phones, 576px and up, up to 767.98px) */
+@media (min-width: 576px) and (max-width: 767.98px) {
+  /* Hero Section Adjustments */
+  #hero {
+    height: 75vh;
+  }
+  #hero h1 {
+    font-size: 2rem;
+  }
+  .hero-btn {
+    font-size: 1.1rem;
+    padding: 12px 22px;
+  }
+
+  /* Intro Section Adjustments */
+  #intro {
+    padding: 30px 15px;
+    margin: 25px auto;
+  }
+  .intro-content h2 {
+    font-size: 1.75rem;
+  }
+  .intro-content p {
+    font-size: 1.1rem;
+  }
+
+  /* Carousel Adjustments */
+  .services-carousel {
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 15px;
+  }
+  .carousel-item {
+    flex: 0 0 80%;
+    margin-bottom: 15px;
+  }
+
+  /* Calendar Section */
+  #calendar {
+    padding: 30px;
+  }
+  .calendar-container h2 {
+    font-size: 1.75rem;
+  }
+  .calendar-container p {
+    font-size: 1.1rem;
+  }
+}
+
+/* Medium Devices (Tablets, 768px and up, up to 991.98px) */
+@media (min-width: 768px) and (max-width: 991.98px) {
+  /* Hero Section Adjustments */
+  #hero {
+    height: 80vh;
+  }
+  #hero h1 {
+    font-size: 2.5rem;
+  }
+  .hero-btn {
+    font-size: 1.2rem;
+    padding: 14px 24px;
+  }
+
+  /* Intro Section Adjustments */
+  #intro {
+    padding: 35px 20px;
+    margin: 30px auto;
+  }
+  .intro-content h2 {
+    font-size: 2rem;
+  }
+  .intro-content p {
+    font-size: 1.2rem;
+  }
+
+  /* Carousel Adjustments */
+  .services-carousel {
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+  }
+  .carousel-item {
+    flex: 0 0 45%;
+    margin: 10px;
+  }
+
+  /* Calendar Section */
+  #calendar {
+    padding: 35px;
+  }
+  .calendar-container h2 {
+    font-size: 2rem;
+  }
+  .calendar-container p {
+    font-size: 1.2rem;
+  }
+}

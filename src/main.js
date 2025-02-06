@@ -13,3 +13,4 @@ import "./scripts/adjustHeaderPadding.js";
 import "./scripts/headerBehavior.js";
 import "./scripts/dropDownMenu.js";
 import "./scripts/tabs.js";
+import "./scripts/mobileMenu.js";

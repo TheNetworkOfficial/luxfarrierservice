@@ -9,20 +9,61 @@
 
     <div class="nav-and-toolkit">
         <nav class="navigation">
-            <li class="dropdown">
-                <a href="#" class="account-display dropdown-trigger">Features <i class="fas fa-caret-down"></i></a>
-                <ul class="dropdown-content">
-                    <li><a href="index.html">Home</a></li>
-                    <li><a href="services.html">Our Services</a></li>
-                    <li><a href="scheduling.html">Schedule An Appointment</a></li>
-                    <!-- Add more feature links as needed -->
-                </ul>
-            </li>
+          <li class="dropdown">
+            <a href="#" class="account-display dropdown-trigger">
+              Features <i class="fas fa-caret-down"></i>
+            </a>
+            <ul class="dropdown-content">
+              <li><a href="index.html">Home</a></li>
+              <li><a href="services.html">Our Services</a></li>
+              <li><a href="scheduling.html">Schedule An Appointment</a></li>
+              <!-- Add more feature links as needed -->
+            </ul>
+          </li>
         </nav>
-
+    
         <!-- Mobile Menu Toggle -->
         <div class="mobile-menu-toggle">
-            <i class="fas fa-bars"></i>
+          <i class="fas fa-bars"></i>
         </div>
+      </div>
+    </header>
+    
+<!-- Mobile Menu (Hidden by default) -->
+<div class="mobile-menu" id="mobileMenu">
+    <div class="mobile-menu-content">
+      <div class="mobile-menu-close" id="mobileMenuClose">
+        <i class="fas fa-times"></i>
+      </div>
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="services.html">Our Services</a></li>
+        <li><a href="scheduling.html">Schedule An Appointment</a></li>
+      </ul>
+      
+      <!-- Mobile version of Quick Links and Contact Us -->
+      <div class="mobile-footer-extra">
+        <div class="mobile-footer-contact">
+          <h3>Contact Us</h3>
+          <h4>Phone:</h4> 
+          <a href="tel:7077403925">(707) 740-3925</a>
+          <h4>Email:</h4> 
+          <a href="mailto:luxfarrierservice@gmail.com">luxfarrierservice@gmail.com</a>
+        </div>
+        <div class="mobile-footer-links">
+            <h3>Quick Links</h3>
+            <ul>
+                <li><a href="#">Other LEN Network Services</a></li>
+            </ul>
+            <div class="social-media">
+                <a href="#"><i class="fab fa-tiktok"></i></a>
+                <a href="#"><i class="fab fa-youtube"></i></a>
+                <a href="#"><i class="fab fa-discord"></i></a>
+            </div>
+        </div>
+      </div>
+      
     </div>
-</header>
+  </div>
+  <!-- Overlay element -->
+  <div class="mobile-menu-overlay" id="mobileMenuOverlay"></div>

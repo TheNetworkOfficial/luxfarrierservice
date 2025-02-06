@@ -73,3 +73,96 @@
   color: #5b92e5; /* Change color on hover/focus for visual feedback */
   text-decoration: none; /* Removes underline from links */
 }
+
+
+/* Extra Small Devices (e.g., ~412px width, less than 576px) */
+@media (max-width: 575.98px) {
+  .footer-content {
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+  }
+  .footer-about,
+  .footer-links,
+  .footer-contact {
+    max-width: 100%;
+    text-align: center;
+    margin-bottom: 20px;
+  }
+  .footer-about p,
+  .footer-contact p {
+    font-size: 14px;
+    margin-bottom: 10px;
+  }
+  .footer-links ul li {
+    margin-bottom: 8px;
+  }
+  .footer-links ul li a {
+    font-size: 14px;
+  }
+  .social-media a {
+    font-size: 18px;
+    margin-right: 8px;
+  }
+}
+
+/* Small Devices (576px – 767.98px) */
+@media (min-width: 576px) and (max-width: 767.98px) {
+  .footer-content {
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    padding: 30px;
+  }
+  /* Have two items per row, center-aligned */
+  .footer-about,
+  .footer-links,
+  .footer-contact {
+    max-width: 45%;
+    text-align: center;
+    margin-bottom: 20px;
+  }
+  .footer-about p,
+  .footer-contact p {
+    font-size: 15px;
+    margin-bottom: 10px;
+  }
+  .footer-links ul li a {
+    font-size: 15px;
+  }
+  .social-media a {
+    font-size: 18px;
+    margin-right: 8px;
+  }
+}
+
+/* Medium Devices (768px – 991.98px) */
+@media (min-width: 768px) and (max-width: 991.98px) {
+  .footer-content {
+    flex-direction: row;
+    justify-content: space-around;
+    padding: 40px;
+  }
+  .footer-about,
+  .footer-links,
+  .footer-contact {
+    max-width: 30%;
+    text-align: left;
+    margin-bottom: 20px;
+  }
+  .footer-about p,
+  .footer-contact p {
+    font-size: 16px;
+    margin-bottom: 15px;
+  }
+  .footer-links ul li {
+    margin-bottom: 10px;
+  }
+  .footer-links ul li a {
+    font-size: 16px;
+  }
+  .social-media a {
+    font-size: 20px;
+    margin-right: 10px;
+  }
+}
