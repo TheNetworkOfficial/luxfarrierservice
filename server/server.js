@@ -148,12 +148,13 @@ app.post('/api/appointments', async (req, res) => {
           status: 'success',
           data: savedAppointment 
       });
-  } catch (error) {
+    } catch (error) {
+      console.error("Appointment submission error:", error);
       res.status(400).json({
           status: 'fail',
           message: error.message
       });
-  }
+    }
 });
 
 // X-ray upload endpoint
