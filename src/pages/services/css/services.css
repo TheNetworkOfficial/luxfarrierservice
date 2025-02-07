@@ -261,16 +261,20 @@ font-size: 1.5rem;
   .services-grid {
     display: none;
   }
+  /* Display the mobile buttons container as a flex container that wraps */
   .services-mobile {
     display: flex;
     flex-wrap: wrap;
-    justify-content: space-between; /* or center, depending on spacing needs */
-    gap: 10px; /* optional: adjust spacing between buttons */
+    justify-content: space-between;
+    gap: 10px;
     margin-bottom: 20px;
   }
+  /* Mobile buttons now have a fixed height and share the same dimensions */
   .services-mobile .mobile-service-btn {
-    flex: 0 0 48%;  /* each button takes roughly half the container's width */
-    padding: 10px;
+    flex: 0 0 48%;  /* roughly two per row */
+    height: 50px;   /* set a uniform height */
+    padding: 0 10px;  /* horizontal padding; vertical centering will come from line-height */
+    line-height: 50px;  /* vertically center the text */
     font-size: 1rem;
     background-color: gold;
     color: #1c1c1c;
@@ -305,6 +309,7 @@ font-size: 1.5rem;
   position: relative;
 }
 
+/* Top close button */
 .overlay-close {
   position: absolute;
   top: 10px;
@@ -313,5 +318,19 @@ font-size: 1.5rem;
   color: gold;
   border: none;
   font-size: 1.5rem;
+  cursor: pointer;
+}
+
+/* New bottom close button styles */
+.overlay-close-bottom {
+  display: block;
+  width: 100%;
+  padding: 10px;
+  margin-top: 20px;
+  font-size: 1rem;
+  background-color: gold;
+  color: #1c1c1c;
+  border: none;
+  border-radius: 5px;
   cursor: pointer;
 }

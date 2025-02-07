@@ -26,57 +26,55 @@
 
         <form id="appointmentForm" enctype="multipart/form-data">
           
-          <!-- ========== STEP 1: CLIENT INFO ========== -->
-          <div class="form-step" id="step-1">
-            <fieldset>
-              <legend>Client Information</legend>
-              
-              <div class="form-row">
-                <!-- Personal Information Column -->
-                <div class="form-column">
-                  <div class="form-group">
-                    <label for="firstName">First Name:<span class="required-asterisk">*</span></label>
-                    <input type="text" id="firstName" name="firstName" required />
-                  </div>
-                  
-                  <div class="form-group">
-                    <label for="lastName">Last Name:<span class="required-asterisk">*</span></label>
-                    <input type="text" id="lastName" name="lastName" required />
-                  </div>
-                  
-                  <div class="form-group">
-                    <label for="clientPhone">Phone Number:<span class="required-asterisk">*</span></label>
-                    <input type="tel" id="clientPhone" name="clientPhone" placeholder="(123) 456-7890" required />
-                    <span id="phoneError" class="error-message">Please enter a valid 10-digit phone number.</span>
-                  </div>
-                  
-                  <div class="form-group">
-                    <label for="clientEmail">Email:<span class="required-asterisk">*</span></label>
-                    <input type="email" id="clientEmail" name="clientEmail" required pattern="^[^\s@]+@[^\s@]+\.[^\s@]+$" title="Please enter a valid email address." />
-                    <span id="emailError" class="error-message">Please enter a valid email address.</span>
-                  </div>
-                </div><!-- End Personal Info Column -->
-                
-                <!-- Address Information Column -->
-                <div class="form-column">
-                  <div class="form-group">
-                    <label for="streetAddress">Street Address (Location of horses if different):<span class="required-asterisk">*</span></label>
-                    <input type="text" id="streetAddress" name="streetAddress" required list="address-suggestions" autocomplete="off" />
-                    <datalist id="address-suggestions">
-                      <!-- Options will be populated dynamically via JavaScript -->
-                    </datalist>
-                  </div>
-                  
-                  <div class="form-group">
-                    <label for="city">City:<span class="required-asterisk">*</span></label>
-                    <input type="text" id="city" name="city" required />
-                  </div>
-                  
-                  <div class="form-group">
-                    <label for="state">State:<span class="required-asterisk">*</span></label>
-                    <select id="state" name="state" required>
-                      <option value="" disabled selected>Select</option>
-                      <!-- Add all US states here -->
+        <!-- ========== STEP 1: CLIENT INFO ========== -->
+        <div class="form-step" id="step-1">
+          <fieldset>
+            <legend>Client Information</legend>
+            
+            <!-- New container that holds both sub-sections -->
+            <div class="client-info-container">
+              <!-- Personal Information (to be shown first on mobile) -->
+              <div class="client-personal">
+                <div class="form-group">
+                  <label for="firstName">First Name:<span class="required-asterisk">*</span></label>
+                  <input type="text" id="firstName" name="firstName" required />
+                </div>
+                <div class="form-group">
+                  <label for="lastName">Last Name:<span class="required-asterisk">*</span></label>
+                  <input type="text" id="lastName" name="lastName" required />
+                </div>
+                <div class="form-group">
+                  <label for="clientPhone">Phone Number:<span class="required-asterisk">*</span></label>
+                  <input type="tel" id="clientPhone" name="clientPhone" placeholder="(123) 456-7890" required />
+                  <span id="phoneError" class="error-message">Please enter a valid 10-digit phone number.</span>
+                </div>
+                <div class="form-group">
+                  <label for="clientEmail">Email:<span class="required-asterisk">*</span></label>
+                  <input type="email" id="clientEmail" name="clientEmail" required
+                        pattern="^[^\s@]+@[^\s@]+\.[^\s@]+$"
+                        title="Please enter a valid email address." />
+                  <span id="emailError" class="error-message">Please enter a valid email address.</span>
+                </div>
+              </div><!-- End .client-personal -->
+
+              <!-- Address Information (to be shown after personal info on mobile) -->
+              <div class="client-address">
+                <div class="form-group">
+                  <label for="streetAddress">Street Address (Location of horses if different):<span class="required-asterisk">*</span></label>
+                  <input type="text" id="streetAddress" name="streetAddress" required list="address-suggestions" autocomplete="off" />
+                  <datalist id="address-suggestions">
+                    <!-- Options populated dynamically via JS -->
+                  </datalist>
+                </div>
+                <div class="form-group">
+                  <label for="city">City:<span class="required-asterisk">*</span></label>
+                  <input type="text" id="city" name="city" required />
+                </div>
+                <div class="form-group">
+                  <label for="state">State:<span class="required-asterisk">*</span></label>
+                  <select id="state" name="state" required>
+                    <option value="" disabled selected>Select</option>
+                    <!-- All US states -->
                       <option value="AL">Alabama</option>
                       <option value="AK">Alaska</option>
                       <option value="AZ">Arizona</option>
@@ -129,22 +127,30 @@
                       <option value="WY">Wyoming</option>
                     </select>
                   </div>
-                  
                   <div class="form-group">
                     <label for="zip">ZIP Code:<span class="required-asterisk">*</span></label>
                     <input type="text" id="zip" name="zip" pattern="\d{5}" title="Please enter a 5-digit ZIP code." required />
                   </div>
-                </div><!-- End Address Info Column -->
-              </div><!-- End Form Row -->
-
-              <!-- Navigation Buttons -->
-              <div class="form-navigation">
+                </div><!-- End .client-address -->
+              </div><!-- End .client-info-container -->
+          
+              <!-- Desktop navigation -->
+              <div class="form-navigation desktop-nav">
                 <button type="button" id="next-1" class="btn btn-next" disabled>
                   Next <i class="fas fa-arrow-right"></i>
                 </button>
               </div>
+              <!-- Mobile navigation -->
+              <div class="form-navigation mobile-nav">
+                <button type="button" id="client-back" class="btn btn-back" style="display:none;">
+                  <i class="fas fa-arrow-left"></i> Back
+                </button>
+                <button type="button" id="client-next" class="btn btn-next">
+                  Next <i class="fas fa-arrow-right"></i>
+                </button>
+              </div>
             </fieldset>
-          </div><!-- End Step 1 -->
+          </div>
 
           <!-- ========== STEP 2: HORSE INFO ========== -->
           <div class="form-step" id="step-2" style="display: none;">

@@ -4,6 +4,7 @@ document.addEventListener("DOMContentLoaded", function () {
     const overlay = document.getElementById("mobile-overlay");
     const overlayBody = document.getElementById("overlay-body");
     const closeBtn = document.getElementById("overlay-close");
+    const bottomCloseBtn = document.getElementById("overlay-close-bottom");
   
     mobileButtons.forEach(function (btn) {
       btn.addEventListener("click", function () {
@@ -20,8 +21,14 @@ document.addEventListener("DOMContentLoaded", function () {
       });
     });
   
+    // Top close button
     closeBtn.addEventListener("click", function () {
-      overlay.style.display = "none";
+        overlay.style.display = "none";
+    });
+
+    // New: Bottom close button
+    bottomCloseBtn.addEventListener("click", function () {
+        overlay.style.display = "none";
     });
   
     // Hide the overlay if the user clicks outside the content area

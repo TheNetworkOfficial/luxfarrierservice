@@ -387,29 +387,79 @@
   background-color: goldenrod;
 }
 
+.mobile-nav {
+  display: none;
+}
 
 /****************************
  * Responsive Design
  ****************************/
 @media (max-width: 768px) {
+  /* Make the overall container fluid rather than fixed width */
+  #appointment-scheduling {
+    width: 100%;
+    margin: 0 10px;
+    padding: 10px;
+  }
+  
+  /* Stack the form rows vertically (if not already done) */
   .form-row {
     flex-direction: column;
+    gap: 20px;
   }
-
+  
+  /* Make each form column take up the full width */
   .form-column {
     min-width: 100%;
   }
-
+  
+  /* For the horse info section, stack blocks and columns vertically */
   #horse-info-container {
     flex-direction: column;
   }
-
+  .horse-info-block {
+    flex: 1 1 100%;
+  }
+  .horse-info-columns {
+    grid-template-columns: 1fr;
+  }
+  
+  /* Stack navigation buttons vertically and make them full width */
   .form-navigation {
     flex-direction: column;
     gap: 10px;
   }
-
   .form-navigation button {
     width: 100%;
+  }
+}
+
+@media (max-width: 575.98px) {
+  /* Stack the client info sections vertically */
+  .client-info-container {
+    flex-direction: column;
+  }
+  /* On mobile, show only the personal info initially */
+  .client-personal {
+    display: block;
+  }
+  .client-address {
+    display: none;
+  }
+  
+  /* Hide the desktop navigation buttons */
+  .desktop-nav {
+    display: none;
+  }
+  .mobile-nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 10px;
+  }
+
+  /* (Optional) Style mobile nav buttons as needed */
+  .mobile-nav button {
+    flex: 1;
   }
 }
