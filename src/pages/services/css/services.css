@@ -1,13 +1,6 @@
-/* BASIC RESET FOR <servicesMain> */
-servicesMain {
-  margin-top: 100px; /* Offset below fixed header if you have one */
-  display: block;
-  width: 100%;
-  background-color: #1c1c1c;
-}
-
 /* SECTION BACKGROUND & TEXT */
 #services {
+  min-width: 100vw;
   background-color: #1c1c1c;
   color: white;
   margin: 0 auto;
@@ -230,6 +223,10 @@ font-size: 1.5rem;
   background-color: #e0cd48;
 }
 
+.bottom-box p {
+  margin-top: 20px;
+}
+
 .bottom-box {
   text-align: center;
   margin-top: auto;
@@ -238,4 +235,83 @@ font-size: 1.5rem;
   color: gold;
   font-size: 1.4rem;
   margin-bottom: 10px;
+}
+
+
+/* For medium screens (tablets, below ~992px) */
+@media (max-width: 991.98px) {
+  /* Stack the grid and sidebar vertically */
+  .services-flex {
+    flex-direction: column;
+  }
+  /* Change the grid to two columns */
+  .services-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  /* Make the sidebar full width */
+  .services-sidebar {
+    width: 100%;
+    margin-top: 20px;
+  }
+}
+
+/* MOBILE-ONLY STYLES */
+@media (max-width: 575.98px) {
+  /* Hide the grid on mobile */
+  .services-grid {
+    display: none;
+  }
+  .services-mobile {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between; /* or center, depending on spacing needs */
+    gap: 10px; /* optional: adjust spacing between buttons */
+    margin-bottom: 20px;
+  }
+  .services-mobile .mobile-service-btn {
+    flex: 0 0 48%;  /* each button takes roughly half the container's width */
+    padding: 10px;
+    font-size: 1rem;
+    background-color: gold;
+    color: #1c1c1c;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+}
+
+/* Mobile Overlay styles (applied globally) */
+.mobile-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.8);
+  display: none;
+  justify-content: center;
+  align-items: center;
+  z-index: 2000;
+}
+
+.mobile-overlay-content {
+  background-color: #262626;
+  padding: 20px;
+  border: 2px solid gold;
+  border-radius: 10px;
+  width: 90%;
+  max-height: 90%;
+  overflow-y: auto;
+  position: relative;
+}
+
+.overlay-close {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background: transparent;
+  color: gold;
+  border: none;
+  font-size: 1.5rem;
+  cursor: pointer;
 }

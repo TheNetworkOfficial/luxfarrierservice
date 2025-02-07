@@ -20,7 +20,7 @@
     <div id="header-placeholder"></div>
 
     <!-- Main Content -->
-    <servicesMain>
+    <main>
       <section id="services">
         <!-- Section heading and description -->
         <div class="services-header">
@@ -28,12 +28,26 @@
           <p>Providing comprehensive equine care tailored to your horse's needs.</p>
         </div>
 
-        <!-- Flex container with 2 columns: .services-grid (left) + .services-sidebar (right) -->
+        <!-- MOBILE BUTTONS (visible only on mobile via CSS) -->
+        <div class="services-mobile">
+          <button class="mobile-service-btn" data-category="hoof-trimming">Hoof Trimming</button>
+          <button class="mobile-service-btn" data-category="half-set-shoes">Half Set Shoes</button>
+          <button class="mobile-service-btn" data-category="full-set-shoes">Full Set Shoes</button>
+          <button class="mobile-service-btn" data-category="pads">Pads</button>
+          <button class="mobile-service-btn" data-category="laminitis-rehabilitation">Laminitis Rehabilitation</button>
+          <button class="mobile-service-btn" data-category="hoof-treatments">Hoof Treatments</button>
+          <button class="mobile-service-btn" data-category="therapeutic-hoof-boots">Therapeutic Hoof Boots</button>
+          <button class="mobile-service-btn" data-category="call-fee">Call Fee</button>
+          <button class="mobile-service-btn" data-category="emergency-services">Emergency Services</button>
+          <button class="mobile-service-btn" data-category="additional-services">Additional Services</button>
+        </div>
+
+        <!-- FLEX CONTAINER for the 2 columns (grid + sidebar) -->
         <div class="services-flex">
           <!-- LEFT COLUMN: The grid -->
           <div class="services-grid">
             <!-- Hoof Trimming -->
-            <div class="grid-item">
+            <div class="grid-item" data-category="hoof-trimming">
               <div class="grid-item-header">
                 <h3>Hoof Trimming</h3>
               </div>
@@ -56,7 +70,7 @@
             </div>
           
             <!-- Half Set Shoes -->
-            <div class="grid-item">
+            <div class="grid-item" data-category="half-set-shoes">
               <div class="grid-item-header">
                 <h3>Half Set Shoes</h3>
                 <h4>(Set of 2)</h4>
@@ -104,7 +118,7 @@
             </div>
           
             <!-- Full Set Shoes -->
-            <div class="grid-item">
+            <div class="grid-item" data-category="full-set-shoes">
               <div class="grid-item-header">
                 <h3>Full Set Shoes</h3>
                 <h4>(Set of 4)</h4>
@@ -152,7 +166,7 @@
             </div>
           
             <!-- Pads -->
-            <div class="grid-item">
+            <div class="grid-item" data-category="pads">
               <div class="grid-item-header">
                 <h3>Pads</h3>
                 <h4>(Set of 2)</h4>
@@ -176,7 +190,7 @@
             </div>
           
             <!-- Laminitis Rehabilitation -->
-            <div class="grid-item">
+            <div class="grid-item" data-category="laminitis-rehabilitation">
               <div class="grid-item-header">
                 <h3>Laminitis Rehabilitation</h3>
               </div>
@@ -199,7 +213,7 @@
             </div>
           
             <!-- Hoof Treatments -->
-            <div class="grid-item">
+            <div class="grid-item" data-category="hoof-treatments">
               <div class="grid-item-header">
                 <h3>Hoof Treatments</h3>
               </div>
@@ -230,7 +244,7 @@
             </div>
           
             <!-- Therapeutic Hoof Boots -->
-            <div class="grid-item">
+            <div class="grid-item" data-category="therapeutic-hoof-boots">
               <div class="grid-item-header">
                 <h3>Therapeutic Hoof Boots</h3>
               </div>
@@ -253,12 +267,13 @@
             </div>
           
             <!-- Call Fee -->
-            <div class="grid-item call-fee-col">
+            <div class="grid-item call-fee-col" data-category="call-fee">
               <div class="grid-item-header">
                 <h3>Call Fee</h3>
                 <h4>(Waived if servicing 5+ horses within 5 miles of your location)</h4>
               </div>
               <div class="call-fee-locations">
+                <!-- (Service lines for each location here) -->
                 <p class="service-line">
                   <span class="service-name">Great Falls</span>
                   <span class="service-actions">
@@ -354,7 +369,7 @@
             </div>
           
             <!-- Emergency Services -->
-            <div class="grid-item">
+            <div class="grid-item" data-category="emergency-services">
               <div class="grid-item-header">
                 <h3>Emergency Services</h3>
               </div>
@@ -377,7 +392,7 @@
             </div>
           
             <!-- Additional Services -->
-            <div class="grid-item">
+            <div class="grid-item" data-category="additional-services">
               <div class="grid-item-header">
                 <h3>Additional Services</h3>
               </div>
@@ -417,17 +432,29 @@
               <h3>Cost Calculator</h3>
               <!-- NEW: Where the items will appear -->
               <div id="cost-calc-items"></div>
-              <div id="cost-calc-total">Total: $0.00</div>
+              <div id="cost-calc-total">Estimated Total: $0.00</div>
             </div>
             <div class="bottom-box">
               <a href="scheduling.html" class="schedule-now-btn">Schedule Appointment</a>
+              <p>
+                <strong>Note:</strong> Totals provided by the calculator are estimates only, and are subject to change depending on the horses post assessment needs, behavior, or at the farriers discretion.
+              </p>
             </div>
           </aside>
         </div>
       </section>
-    </servicesMain>
+    </main>
+
+    <!-- MOBILE OVERLAY (used on mobile only) -->
+    <div id="mobile-overlay" class="mobile-overlay">
+      <div class="mobile-overlay-content">
+        <button id="overlay-close" class="overlay-close">×</button>
+        <div id="overlay-body"></div>
+      </div>
+    </div>
 
     <!-- Placeholder for Footer -->
     <div id="footer-placeholder"></div>
+
   </body>
 </html>

@@ -1,3 +1,4 @@
+//costCalculator.js
 document.addEventListener('DOMContentLoaded', () => {
     // We'll store items as objects: { name: string, price: number, quantity: number }
     const costCalcItems = [];
@@ -34,7 +35,7 @@ document.addEventListener('DOMContentLoaded', () => {
       });
   
       // Update total
-      totalContainer.textContent = `Total: $${total.toFixed(2)}`;
+      totalContainer.textContent = `Estimated Total: $${total.toFixed(2)}`;
     }
   
     // Handles adding an item
@@ -97,4 +98,7 @@ document.addEventListener('DOMContentLoaded', () => {
         removeItem(name, price);
       }
     });
-  });
+    // Expose the functions to global scope so they can be used by mobileServices.js
+    window.addItem = addItem;
+    window.removeItem = removeItem;
+});
