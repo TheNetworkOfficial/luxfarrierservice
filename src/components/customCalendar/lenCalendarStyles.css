@@ -290,3 +290,62 @@
   transform: translateY(5px); /* Slight offset for "below" tooltips */
 }
 
+/*********************************************************
+ * Mobile Overrides for Calendar Plugin
+ * Applies only when the viewport is 575.98px or less
+ *********************************************************/
+ @media (max-width: 575.98px) {
+  /* Make the calendar container full width and reduce its height */
+  #calendar-app {
+    width: 100%;
+    max-height: 60vh;       /* Reduced from 80vh for mobile */
+    margin: 10px auto;      /* Some margin for breathing room */
+    border-width: 1px;      /* Thinner border for smaller screens */
+    padding: 5px;           /* Less padding for a compact look */
+  }
+  
+  /* Adjust the calendar navigation bar */
+  .calendar-nav {
+    padding: 0 5px;
+  }
+  .calendar-nav button {
+    padding: 6px 8px;
+    font-size: 0.8rem;
+  }
+  .current-month-year {
+    font-size: 1rem;
+  }
+  
+  /* Weekdays header: reduce font size and padding */
+  .calendar-weekdays {
+    font-size: 0.75rem;
+    padding: 4px 0;
+  }
+  .weekday {
+    padding: 3px;
+    font-size: 0.7rem;
+  }
+  
+  /* Calendar grid rows: reduce row height */
+  .calendar-row {
+    height: 10vh; /* Adjusted from 12vh */
+  }
+  
+  /* Calendar cells: reduce padding and font size */
+  .calendar-cell {
+    padding: 4px;
+    font-size: 0.75rem;
+  }
+  
+  /* Tooltips: make them smaller for mobile screens */
+  .cell-tooltip-popup {
+    width: 150px;
+    font-size: 0.75rem;
+  }
+  
+  /* Time slot popup: adjust dimensions and font size */
+  .time-slot-popup {
+    width: 200px;
+    font-size: 0.75rem;
+  }
+}

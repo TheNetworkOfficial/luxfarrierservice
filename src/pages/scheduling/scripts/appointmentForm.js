@@ -14,6 +14,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // Navigation buttons
     const next1 = document.getElementById('next-1');
     const next2 = document.getElementById('next-2');
+    const mobileback2 = document.getElementById('mobile-back-2');
     const back3 = document.getElementById('back-3'); // "Back" button in Step 3
 
     const goReviewBtn = document.getElementById('go-review'); // "Review" button in Step 3
@@ -273,112 +274,114 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     // ========== ADDING MORE HORSES ==========
-    addHorseBtn.addEventListener('click', () => {
-      const newBlock = document.createElement('div');
-      newBlock.classList.add('horse-info-block');
-      newBlock.innerHTML = `
-          <button type="button" class="remove-horse-btn" title="Remove Horse"><i class="fas fa-times"></i></button>
-  
-          <div class="horse-info-columns">
-              <div class="form-group">
-                  <label>Name:<span class="required-asterisk">*</span></label>
-                  <input type="text" name="horseName[]" required />
-              </div>
-  
-              <div class="form-group">
-                  <label>Breed:</label>
-                  <input type="text" name="horseBreed[]" />
-              </div>
-  
-              <div class="form-group">
-                  <label>Age:</label>
-                  <input type="number" name="horseAge[]" min="0" />
-              </div>
-  
-              <div class="form-group">
-                  <label>Sex:</label>
-                  <select name="horseSex[]">
-                      <option value="" disabled selected>Select</option>
-                      <option value="Mare">Mare</option>
-                      <option value="Gelding">Gelding</option>
-                      <option value="Stallion">Stallion</option>
-                  </select>
-              </div>
-  
-              <div class="form-group">
-                  <label>Occupation:<span class="required-asterisk">*</span></label>
-                  <select name="horseOccupation[]" required>
-                      <option value="" disabled selected>Select</option>
-                      <option value="Working">Working</option>
-                      <option value="Hunting / Packing">Hunting/Packing</option>
-                      <option value="Jumping / Eventing">Jumping/Eventing</option>
-                      <option value="Trail Riding">Trail Riding</option>
-                      <option value="Retired / Pasture Pet">Retired/Pasture Pet</option>
-                  </select>
-              </div>
-  
-              <div class="form-group">
-                  <label>Date of Last Farrier Care:<span class="required-asterisk">*</span></label>
-                  <input type="date" name="horseLastCare[]" required />
-              </div>
-          </div>
-  
-          <!-- Laminitis History -->
-          <div class="form-group">
-              <label>History of Laminitis?:<span class="required-asterisk">*</span></label>
-              <select class="laminitis-history" name="laminitisHistory[]" required>
-                  <option value="" disabled selected>Select</option>
-                  <option value="No">No</option>
-                  <option value="Yes">Yes</option>
-              </select>
-          </div>
-          <div class="conditional-group laminitis-details">
-              <div class="form-group">
-                  <label>Is your horse currently in an active laminitic episode?:</label>
-                  <select name="laminitisActive[]">
-                      <option value="No" selected>No</option>
-                      <option value="Yes">Yes</option>
-                  </select>
-              </div>
-              <div class="form-group">
-                  <label>Your horse's veterinarian (name/practice):</label>
-                  <input type="text" name="laminitisVet[]" />
-              </div>
+    if (addHorseBtn) {
+        addHorseBtn.addEventListener('click', () => {
+        const newBlock = document.createElement('div');
+        newBlock.classList.add('horse-info-block');
+        newBlock.innerHTML = `
+            <button type="button" class="remove-horse-btn" title="Remove Horse"><i class="fas fa-times"></i></button>
+    
+            <div class="horse-info-columns">
+                <div class="form-group">
+                    <label>Name:<span class="required-asterisk">*</span></label>
+                    <input type="text" name="horseName[]" required />
+                </div>
+    
+                <div class="form-group">
+                    <label>Breed:</label>
+                    <input type="text" name="horseBreed[]" />
+                </div>
+    
+                <div class="form-group">
+                    <label>Age:</label>
+                    <input type="number" name="horseAge[]" min="0" />
+                </div>
+    
+                <div class="form-group">
+                    <label>Sex:</label>
+                    <select name="horseSex[]">
+                        <option value="" disabled selected>Select</option>
+                        <option value="Mare">Mare</option>
+                        <option value="Gelding">Gelding</option>
+                        <option value="Stallion">Stallion</option>
+                    </select>
+                </div>
+    
+                <div class="form-group">
+                    <label>Occupation:<span class="required-asterisk">*</span></label>
+                    <select name="horseOccupation[]" required>
+                        <option value="" disabled selected>Select</option>
+                        <option value="Working">Working</option>
+                        <option value="Hunting / Packing">Hunting/Packing</option>
+                        <option value="Jumping / Eventing">Jumping/Eventing</option>
+                        <option value="Trail Riding">Trail Riding</option>
+                        <option value="Retired / Pasture Pet">Retired/Pasture Pet</option>
+                    </select>
+                </div>
+    
+                <div class="form-group">
+                    <label>Date of Last Farrier Care:<span class="required-asterisk">*</span></label>
+                    <input type="date" name="horseLastCare[]" required />
+                </div>
+            </div>
+    
+            <!-- Laminitis History -->
+            <div class="form-group">
+                <label>History of Laminitis?:<span class="required-asterisk">*</span></label>
+                <select class="laminitis-history" name="laminitisHistory[]" required>
+                    <option value="" disabled selected>Select</option>
+                    <option value="No">No</option>
+                    <option value="Yes">Yes</option>
+                </select>
+            </div>
+            <div class="conditional-group laminitis-details">
+                <div class="form-group">
+                    <label>Is your horse currently in an active laminitic episode?:</label>
+                    <select name="laminitisActive[]">
+                        <option value="No" selected>No</option>
+                        <option value="Yes">Yes</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>Your horse's veterinarian (name/practice):</label>
+                    <input type="text" name="laminitisVet[]" />
+                </div>
 
-              <div class="form-group">
-                  <label>Do you have x-rays of the current laminitic episode?:</label>
-                  <select class="laminitis-xray-select" name="laminitisXray[]">
-                      <option value="No" selected>No</option>
-                      <option value="Yes">Yes</option>
-                  </select>
-              </div>
-              <div class="form-group conditional-group laminitis-xray-upload">
-                  <label>Upload X-ray images:</label>
-                  <input type="file" name="laminitisXrayFile[]" multiple accept="image/*" />
-              </div>
-          </div><!-- End Laminitis Details -->
-  
-          <!-- Special farrier needs? -->
-          <div class="form-group">
-              <label>Any known medical issues or special farrier needs?:<span class="required-asterisk">*</span></label>
-              <select class="special-needs-history" name="specialNeedsHistory[]" required>
-                  <option value="" disabled selected>Select</option>
-                  <option value="No">No</option>
-                  <option value="Yes">Yes</option>
-              </select>
-          </div>
-          <div class="conditional-group special-needs-details">
-              <div class="form-group">
-                  <label>Please explain your horse’s special needs:</label>
-                  <textarea name="specialNeedsExplain[]" rows="2"></textarea>
-              </div>
-          </div>
-      `;
-  
-      horseContainer.appendChild(newBlock);
-      initHorseBlockEvents(newBlock);
-      checkHorseFormCompleteness();
-    });
+                <div class="form-group">
+                    <label>Do you have x-rays of the current laminitic episode?:</label>
+                    <select class="laminitis-xray-select" name="laminitisXray[]">
+                        <option value="No" selected>No</option>
+                        <option value="Yes">Yes</option>
+                    </select>
+                </div>
+                <div class="form-group conditional-group laminitis-xray-upload">
+                    <label>Upload X-ray images:</label>
+                    <input type="file" name="laminitisXrayFile[]" multiple accept="image/*" />
+                </div>
+            </div><!-- End Laminitis Details -->
+    
+            <!-- Special farrier needs? -->
+            <div class="form-group">
+                <label>Any known medical issues or special farrier needs?:<span class="required-asterisk">*</span></label>
+                <select class="special-needs-history" name="specialNeedsHistory[]" required>
+                    <option value="" disabled selected>Select</option>
+                    <option value="No">No</option>
+                    <option value="Yes">Yes</option>
+                </select>
+            </div>
+            <div class="conditional-group special-needs-details">
+                <div class="form-group">
+                    <label>Please explain your horse’s special needs:</label>
+                    <textarea name="specialNeedsExplain[]" rows="2"></textarea>
+                </div>
+            </div>
+        `;
+    
+        horseContainer.appendChild(newBlock);
+        initHorseBlockEvents(newBlock);
+        checkHorseFormCompleteness();
+        });
+    }
 
     // STEP NAVIGATION LOGIC
     // ========== "Next" BUTTON FROM STEP 1 TO STEP 2 ==========
@@ -391,32 +394,45 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // ========== "Back" and "Next" BUTTONS FROM STEP 2 TO STEP 1 & 3 ==========
     function addNavigationButtonsStep2() {
-      // Create navigation container
-      const navDiv = document.createElement('div');
-      navDiv.classList.add('form-navigation');
-
-      // Create "Back" button
-      const back2 = document.createElement('button');
-      back2.type = 'button';
-      back2.id = 'back-2';
-      back2.classList.add('btn', 'btn-back');
-      back2.innerHTML = '<i class="fas fa-arrow-left"></i> Back';
-      back2.addEventListener('click', () => {
-          step2.style.display = 'none';
-          step1.style.display = 'block';
-          window.scrollTo(0, 0);
-      });
-
-      // Append "Back" and "Next" buttons to navigation container
-      navDiv.appendChild(back2);
-      navDiv.appendChild(next2); // 'next2' is the "Next" button element
-
-      // Append navigation container to step2 fieldset
-      document.querySelector('#step-2 fieldset').appendChild(navDiv);
+        // Only add the desktop navigation if the viewport is wider than 575.98px
+        if (window.innerWidth > 575.98) {
+          // Create navigation container and tag it as desktop-only.
+          const navDiv = document.createElement('div');
+          navDiv.classList.add('form-navigation', 'desktop-nav');
+      
+          // Create "Back" button.
+          const back2 = document.createElement('button');
+          back2.type = 'button';
+          back2.id = 'back-2';
+          back2.classList.add('btn', 'btn-back');
+          back2.innerHTML = '<i class="fas fa-arrow-left"></i> Back';
+          back2.addEventListener('click', () => {
+            step2.style.display = 'none';
+            step1.style.display = 'block';
+            window.scrollTo(0, 0);
+          });
+      
+          // Append "Back" and "Next" buttons to navigation container.
+          navDiv.appendChild(back2);
+          navDiv.appendChild(next2); // next2 is assumed to be the desktop "Next" button.
+      
+          // Append navigation container to step2 fieldset.
+          document.querySelector('#step-2 fieldset').appendChild(navDiv);
+        }
     }
 
     // Replace the existing "Back" button appending with this function call
     addNavigationButtonsStep2();
+
+    // If the mobile back button exists (i.e. in mobile view), add an event listener:
+    if (mobileback2) {
+        mobileback2.addEventListener('click', () => {
+        // Go back from Step 2 (Horse Info) to Step 1 (Client Info)
+        step2.style.display = 'none';
+        step1.style.display = 'block';
+        window.scrollTo(0, 0);
+        });
+    }
 
     // ========== "Next" BUTTON FROM STEP 2 TO STEP 3 ==========
     next2.addEventListener('click', () => {

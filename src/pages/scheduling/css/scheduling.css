@@ -387,6 +387,11 @@
   background-color: goldenrod;
 }
 
+/* Default: show desktop nav, hide mobile nav */
+.desktop-nav {
+  display: flex; /* or block, depending on your design */
+}
+
 .mobile-nav {
   display: none;
 }
@@ -460,6 +465,117 @@
 
   /* (Optional) Style mobile nav buttons as needed */
   .mobile-nav button {
+    flex: 1;
+  }
+
+  .horse-info-desktop {
+    display: none;
+  }
+  .horse-info-mobile {
+    display: block;
+  }
+  /* Style the mobile add button as a square */
+  .mobile-add-horse,
+  .mobile-horse-square {
+    width: 100px;
+    height: 100px;
+    display: inline-flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border: 2px solid gold;
+    border-radius: 8px;
+    margin: 5px;
+    background-color: #262626;
+    color: gold;
+    cursor: pointer;
+    text-align: center;
+  }
+  .mobile-add-horse .plus-icon {
+    font-size: 2rem;
+    line-height: 1;
+  }
+  .mobile-add-horse .button-text {
+    font-size: 0.9rem;
+    margin-top: 4px;
+  }
+  /* Container for the horse list tiles */
+  #mobile-horse-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-top: 10px;
+  }
+  
+/* Modal Overlay */
+  .horse-info-modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.8); /* semi-transparent overlay */
+    display: none; /* will be set to flex when shown */
+    justify-content: center;
+    align-items: center;
+    z-index: 2000;
+  }
+
+  /* Modal Content – Styled to match the appointment form */
+  .horse-info-modal-content {
+    background-color: #1c1c1c;            /* same as your form */
+    padding: 20px;                        /* adjust as needed */
+    border-radius: 10px;                  /* same as your form */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* same shadow as your form */
+    width: 90%;
+    max-height: 90%;
+    overflow-y: auto;
+    position: relative;
+    color: #fff;                          /* white text, to contrast the dark background */
+    font-family: inherit;                 /* inherit the body font */
+  }
+
+  .horse-info-modal input[type="text"],
+  .horse-info-modal input[type="number"],
+  .horse-info-modal input[type="date"],
+  .horse-info-modal select,
+  .horse-info-modal textarea {
+    width: 100%;
+    padding: 12px 15px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    font-size: 1rem;
+    transition: border-color 0.3s;
+  }
+
+  .horse-info-modal label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 500;
+    color: #fff;
+  }
+
+  /* Modal Close Button */
+  .modal-close {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background: transparent;
+    color: #fff;
+    border: none;
+    font-size: 1.5rem;
+    cursor: pointer;
+  }
+  /* Modal steps styling */
+  .horse-info-modal .modal-step {
+    margin-bottom: 20px;
+  }
+  .modal-navigation {
+    display: flex;
+    justify-content: space-between;
+    gap: 10px;
+  }
+  .modal-navigation button {
     flex: 1;
   }
 }
