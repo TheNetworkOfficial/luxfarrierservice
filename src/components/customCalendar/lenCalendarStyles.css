@@ -1,8 +1,4 @@
-/**********************************************************
- * Container: #calendar-app
- * - 80% viewport width & height
- * - Flex column layout so nav is on top, grid below
- **********************************************************/
+/*lenCalendarStyles.css*/
  #calendar-app {
     /* Center on page and take up 80% of viewport */
     margin: 0 auto;

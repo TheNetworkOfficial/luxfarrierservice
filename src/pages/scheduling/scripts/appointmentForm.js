@@ -443,6 +443,20 @@ document.addEventListener('DOMContentLoaded', () => {
         initCalendar();
     });
 
+    // Get the mobile "Next" button
+    const mobileHorseNext = document.getElementById('mobile-horse-next');
+    if (mobileHorseNext) {
+        mobileHorseNext.addEventListener('click', () => {
+        // Hide Step 2 and show Step 3
+        step2.style.display = 'none';
+        step3.style.display = 'block';
+        window.scrollTo(0, 0);
+
+        // Initialize the calendar
+        initCalendar();
+        });
+    }
+
     // ========== "Back" BUTTON FROM STEP 3 TO STEP 2 ==========
     back3.addEventListener('click', () => {
       step3.style.display = 'none';
