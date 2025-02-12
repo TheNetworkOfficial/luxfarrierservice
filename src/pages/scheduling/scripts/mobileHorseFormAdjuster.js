@@ -303,12 +303,38 @@ document.addEventListener('DOMContentLoaded', function() {
   function updateMobileHorseList() {
     mobileHorseList.innerHTML = '';
     mobileHorseData.forEach((horse, index) => {
+      // Create the container square
       const square = document.createElement('div');
       square.classList.add('mobile-horse-square');
-      square.textContent = horse.name || 'Unnamed';
+  
+      // Create a span for the horse name
+      const nameSpan = document.createElement('span');
+      nameSpan.textContent = horse.name || 'Unnamed';
+      square.appendChild(nameSpan);
+  
+      // Create the delete button (an "x")
+      const deleteBtn = document.createElement('button');
+      deleteBtn.classList.add('mobile-horse-delete');
+      deleteBtn.innerHTML = '&times;';
+  
+      // Attach event listener so that clicking the delete button shows a confirmation popup.
+      deleteBtn.addEventListener('click', (e) => {
+        e.stopPropagation(); // prevent triggering the edit modal
+        if (window.confirm("Are you sure you want to delete this horse?")) {
+          mobileHorseData.splice(index, 1);
+          updateMobileHorseList();
+          mobileHorseNextBtn.disabled = mobileHorseData.length === 0;
+        }
+      });
+      
+      // Append the delete button to the square
+      square.appendChild(deleteBtn);
+      
+      // Clicking the square itself opens the modal for editing
       square.addEventListener('click', () => {
         openHorseModal(index);
       });
+      
       mobileHorseList.appendChild(square);
     });
   }

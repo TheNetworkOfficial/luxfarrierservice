@@ -5,6 +5,14 @@ import { API_BASE_URL } from '../../../config.js';
 document.addEventListener('DOMContentLoaded', () => {
     const appointmentForm = document.getElementById('appointmentForm');
 
+    // Prevent Enter key from auto-submitting the form
+    appointmentForm.addEventListener('keydown', function(e) {
+        if (e.key === "Enter" && e.target.tagName !== "TEXTAREA") {
+            e.preventDefault();
+            return false;
+        }
+    });
+
     // Step elements
     const step1 = document.getElementById('step-1');
     const step2 = document.getElementById('step-2');

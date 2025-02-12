@@ -459,6 +459,7 @@
   }
   .mobile-nav {
     display: flex;
+    flex-direction: row;
     justify-content: space-between;
     align-items: center;
     gap: 10px;
@@ -466,6 +467,7 @@
 
   /* (Optional) Style mobile nav buttons as needed */
   .mobile-nav button {
+    width: auto;
     flex: 1;
   }
 
@@ -491,6 +493,19 @@
     color: gold;
     cursor: pointer;
     text-align: center;
+  }
+  .mobile-horse-square {
+    position: relative; /* Allow the delete button to be positioned absolutely */
+  }
+  .mobile-horse-delete {
+    position: absolute;
+    top: 2px;
+    right: 2px;
+    background: transparent;
+    border: none;
+    color: red;
+    font-size: 1.2rem;
+    cursor: pointer;
   }
   .mobile-add-horse .plus-icon {
     font-size: 2rem;
