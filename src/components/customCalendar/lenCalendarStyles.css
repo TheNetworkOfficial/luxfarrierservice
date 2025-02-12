@@ -291,13 +291,14 @@
  * Applies only when the viewport is 575.98px or less
  *********************************************************/
  @media (max-width: 575.98px) {
-  /* Make the calendar container full width and reduce its height */
+  /* Ensure the calendar container never overflows horizontally */
   #calendar-app {
     width: 100%;
     max-height: 60vh;       /* Reduced from 80vh for mobile */
     margin: 10px auto;      /* Some margin for breathing room */
     border-width: 1px;      /* Thinner border for smaller screens */
     padding: 5px;           /* Less padding for a compact look */
+    overflow-x: hidden;     /* Prevent horizontal scrolling */
   }
   
   /* Adjust the calendar navigation bar */
@@ -327,10 +328,30 @@
     height: 10vh; /* Adjusted from 12vh */
   }
   
-  /* Calendar cells: reduce padding and font size */
+  /* Calendar cells: reduce padding and font size, and force text to not overflow */
   .calendar-cell {
-    padding: 4px;
+    padding: 4px 2px;
     font-size: 0.75rem;
+    align-items: flex-start;
+    /* Force uniform cell widths: with grid-template-columns in the row, each cell is 1fr.
+       But if content were to force expansion, these rules will prevent it. */
+    overflow: hidden;          /* Cut off any overflow */
+    white-space: nowrap;       /* Prevent wrapping */
+    text-overflow: ellipsis;   /* Show an ellipsis if text is too long */
+  }
+  
+  /* Also force any labels or badges inside cells to obey the width */
+  .day-city-labels,
+  .selected-slot-badge {
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+  }
+
+  /* Make sure the badge itself is a block element that takes full width */
+  .city-badge {
+    display: block;
+    width: 100%;
   }
   
   /* Tooltips: make them smaller for mobile screens */
