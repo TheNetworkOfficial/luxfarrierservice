@@ -82,42 +82,57 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // If user selects an autocomplete suggestion => get place details
     streetAddressInput.addEventListener('change', async () => {
-      const selectedValue = streetAddressInput.value;
-      const selection = autocompleteSuggestions.find(p => p.description === selectedValue);
-      if (!selection) return;
-      try {
-        const resp = await fetch(`${API_BASE_URL}/api/place-details?place_id=${encodeURIComponent(selection.place_id)}`);
-        const data = await resp.json();
-        if (data.error) {
-          console.error('Place Details Error:', data.error);
-          return;
+        const selectedValue = streetAddressInput.value;
+        const selection = autocompleteSuggestions.find(p => p.description === selectedValue);
+        if (!selection) return;
+        try {
+          const resp = await fetch(`${API_BASE_URL}/api/place-details?place_id=${encodeURIComponent(selection.place_id)}`);
+          const data = await resp.json();
+          if (data.error) {
+            console.error('Place Details Error:', data.error);
+            return;
+          }
+      
+          const addressComponents = data.address_components || [];
+          let number = '';
+          let route = '';
+          let locCity = '';
+          let locState = '';
+          let locZip = '';
+      
+          addressComponents.forEach(c => {
+            if (c.types.includes('street_number')) number = c.long_name;
+            if (c.types.includes('route')) route = c.long_name;
+            if (c.types.includes('locality')) locCity = c.long_name;
+            if (c.types.includes('administrative_area_level_1')) locState = c.short_name;
+            if (c.types.includes('postal_code')) locZip = c.long_name;
+          });
+      
+          const fullStreet = number ? number + ' ' + route : route;
+          if (fullStreet) {
+            streetAddressInput.value = fullStreet;
+            streetAddressInput.dispatchEvent(new Event('input', { bubbles: true }));
+          }
+          if (locCity) {
+            const cityInput = document.getElementById('city');
+            cityInput.value = locCity;
+            cityInput.dispatchEvent(new Event('input', { bubbles: true }));
+          }
+          if (locState) {
+            const stateInput = document.getElementById('state');
+            stateInput.value = locState;
+            stateInput.dispatchEvent(new Event('input', { bubbles: true }));
+          }
+          if (locZip) {
+            const zipInput = document.getElementById('zip');
+            zipInput.value = locZip;
+            zipInput.dispatchEvent(new Event('input', { bubbles: true }));
+          }
+      
+          checkClientFormCompleteness();
+        } catch (err) {
+          console.error('Place Details Fetch Error:', err);
         }
-
-        const addressComponents = data.address_components || [];
-        let number = '';
-        let route = '';
-        let locCity = '';
-        let locState = '';
-        let locZip = '';
-
-        addressComponents.forEach(c => {
-          if (c.types.includes('street_number')) number = c.long_name;
-          if (c.types.includes('route')) route = c.long_name;
-          if (c.types.includes('locality')) locCity = c.long_name;
-          if (c.types.includes('administrative_area_level_1')) locState = c.short_name;
-          if (c.types.includes('postal_code')) locZip = c.long_name;
-        });
-
-        const fullStreet = number ? number + ' ' + route : route;
-        if (fullStreet) streetAddressInput.value = fullStreet;
-        if (locCity) document.getElementById('city').value = locCity;
-        if (locState) document.getElementById('state').value = locState;
-        if (locZip) document.getElementById('zip').value = locZip;
-
-        checkClientFormCompleteness();
-      } catch (err) {
-        console.error('Place Details Fetch Error:', err);
-      }
     });
 
     // ========== CLEAVE.JS FOR PHONE NUMBER FORMATTING ==========
@@ -501,28 +516,55 @@ document.addEventListener('DOMContentLoaded', () => {
     finalSubmit.addEventListener('click', async (e) => {
         e.preventDefault();
         
-        // Collect form data
-        const formData = {
-            client: {
-                firstName: document.getElementById('firstName').value.trim(),
-                lastName: document.getElementById('lastName').value.trim(),
-                address: `${document.getElementById('streetAddress').value.trim()}, ${document.getElementById('city').value.trim()}`,
-                phone: document.getElementById('clientPhone').value.trim(),
-                email: document.getElementById('clientEmail').value.trim()
-            },
-            horses: Array.from(horseContainer.querySelectorAll('.horse-info-block')).map(block => ({
-                name: block.querySelector('[name="horseName[]"]').value,
-                breed: block.querySelector('[name="horseBreed[]"]').value,
-                occupation: block.querySelector('[name="horseOccupation[]"]').value,
-                lastCare: block.querySelector('[name="horseLastCare[]"]').value,
-                laminitisHistory: block.querySelector('[name="laminitisHistory[]"]').value,
-                specialNeeds: block.querySelector('[name="specialNeedsHistory[]"]').value,
-                xrayUrl: block.querySelector('[name="laminitisXrayFile[]"]')?.files[0]?.name || '' // Will be replaced with actual S3 URL
-            })),
-            selectedSlots: selectedSlots.map(slot => ({
-                date: slot.date.toISOString(),
-                hour: slot.hour
+        // Get desktop horse blocks
+        const desktopHorseBlocks = Array.from(
+            document.getElementById('horse-info-container').querySelectorAll('.horse-info-block')
+        );
+        const desktopHorseData = desktopHorseBlocks
+            .map(block => ({
+            name: block.querySelector('[name="horseName[]"]').value,
+            breed: block.querySelector('[name="horseBreed[]"]').value,
+            occupation: block.querySelector('[name="horseOccupation[]"]').value,
+            lastCare: block.querySelector('[name="horseLastCare[]"]').value,
+            laminitisHistory: block.querySelector('[name="laminitisHistory[]"]').value,
+            specialNeeds: block.querySelector('[name="specialNeedsHistory[]"]').value,
+            xrayUrl: block.querySelector('[name="laminitisXrayFile[]"]')?.files[0]?.name || ''
             }))
+            .filter(horse => horse.name.trim() !== ''); // Filter out empty entries
+      
+        // Get mobile horse data from the modal
+        const mobileHorseData = window.mobileHorseData || [];
+        // (If needed, you can remap mobileHorseData to match the desktop data shape.)
+        const mobileMappedData = mobileHorseData.map(mobileHorse => ({
+          name: mobileHorse.name,
+          breed: mobileHorse.breed,
+          // If your modal collects additional fields like age or sex, include or ignore them as needed.
+          occupation: mobileHorse.occupation,
+          lastCare: mobileHorse.lastCare,
+          // Note: your modal uses "laminitis" instead of "laminitisHistory"
+          laminitisHistory: mobileHorse.laminitis, 
+          specialNeeds: mobileHorse.specialNeeds,
+          // For file uploads, you may need to handle them separately if they come from a file input.
+          xrayUrl: ''  // Adjust if you are handling file uploads from mobile as well.
+        }));
+      
+        // Merge both arrays
+        const allHorseData = desktopHorseData.concat(mobileMappedData);
+        
+        // Build the final form data
+        const formData = {
+          client: {
+            firstName: document.getElementById('firstName').value.trim(),
+            lastName: document.getElementById('lastName').value.trim(),
+            address: `${document.getElementById('streetAddress').value.trim()}, ${document.getElementById('city').value.trim()}`,
+            phone: document.getElementById('clientPhone').value.trim(),
+            email: document.getElementById('clientEmail').value.trim()
+          },
+          horses: allHorseData,
+          selectedSlots: selectedSlots.map(slot => ({
+            date: slot.date.toISOString(),
+            hour: slot.hour
+          }))
         };
 
         try {
@@ -563,24 +605,16 @@ document.addEventListener('DOMContentLoaded', () => {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify(formData)
-            });
-
-            if (!response.ok) throw new Error('Submission failed');
-
-            // Success handling
-            window.location.href = '/confirmation.html';
-            
-        } catch (error) {
-            console.error('Submission error:', error);
-            alert('Submission failed. Please check your connection and try again.');
-        }
+              });
+              if (!response.ok) throw new Error('Submission failed');
+              window.location.href = '/confirmation.html';
+            } catch (error) {
+              console.error('Submission error:', error);
+              alert('Submission failed. Please check your connection and try again.');
+            }
     });
 
     // ========== HELPER: Highlight the chosen time slot in the UI ==========
-    // (Minor Error 2) => We'll skip letting user select if the date is .proximity-red
-    // We'll fix it inside lenCalendarPlugin showTimeSlotsForDay or onTimeSelect check
-    // We'll do it in onTimeSelect as well, see below:
-
     function onTimeSlotClicked(date, hour) {
       const dateKey = formatDateKey(date);
       const cell = calendarUI.querySelector(`[data-date="${dateKey}"]`);
@@ -770,40 +804,51 @@ document.addEventListener('DOMContentLoaded', () => {
       // Add Horizontal Rule
       reviewDetailsDiv.appendChild(document.createElement('hr'));
   
-      // 2) Summarize Horse Info with Enhanced Details
-  
-      // Create and append the Horse Information Header
-      const horseHeader = document.createElement('h4');
-      horseHeader.textContent = 'Horse Information';
-      horseHeader.style.color = 'gold'; // Ensure it matches existing styles
-      reviewDetailsDiv.appendChild(horseHeader);
-  
-      // Create the Horses Grid Container
-      const horseSection = document.createElement('div');
-      horseSection.classList.add('review-horses-grid');
-  
-      const horseBlocks = horseContainer.querySelectorAll('.horse-info-block');
-      horseBlocks.forEach((block, index) => {
-          const name = block.querySelector('input[name="horseName[]"]').value.trim();
-          const breed = block.querySelector('input[name="horseBreed[]"]').value.trim();
-          const occupation = block.querySelector('select[name="horseOccupation[]"]').value;
-          const lastCare = block.querySelector('input[name="horseLastCare[]"]').value;
-          const lamHistory = block.querySelector('select[name="laminitisHistory[]"]').value;
-          const specialNeeds = block.querySelector('select[name="specialNeedsHistory[]"]').value;
-  
-          horseSection.innerHTML += `
+        // 2) Summarize Horse Info
+        const desktopHorseBlocks = Array.from(
+            document.getElementById('horse-info-container').querySelectorAll('.horse-info-block')
+        );
+        const desktopHorseData = desktopHorseBlocks
+            .map(block => ({
+            name: block.querySelector('[name="horseName[]"]').value,
+            breed: block.querySelector('[name="horseBreed[]"]').value,
+            occupation: block.querySelector('[name="horseOccupation[]"]').value,
+            lastCare: block.querySelector('[name="horseLastCare[]"]').value,
+            laminitisHistory: block.querySelector('[name="laminitisHistory[]"]').value,
+            specialNeeds: block.querySelector('[name="specialNeedsHistory[]"]').value,
+            xrayUrl: block.querySelector('[name="laminitisXrayFile[]"]')?.files[0]?.name || ''
+            }))
+            .filter(horse => horse.name.trim() !== ''); // Filter out empty entries
+        
+          // Get mobile horse data from the modal (exposed globally)
+          const mobileHorseData = window.mobileHorseData || [];
+          const mobileMappedData = mobileHorseData.map(horse => ({
+            name: horse.name,
+            breed: horse.breed,
+            occupation: horse.occupation,
+            lastCare: horse.lastCare,
+            laminitisHistory: horse.laminitis,
+            specialNeeds: horse.specialNeeds
+          }));
+        
+          const allHorseData = desktopHorseData.concat(mobileMappedData);
+        
+          // Create the Horses Section in the review summary
+          const horseSection = document.createElement('div');
+          horseSection.classList.add('review-horses-grid');
+          allHorseData.forEach((horse, index) => {
+            horseSection.innerHTML += `
               <div class="review-horse-card">
-                  <p><strong>Horse #${index + 1} Name:</strong> ${name}</p>
-                  <p><strong>Breed:</strong> ${breed}</p>
-                  <p><strong>Occupation:</strong> ${occupation}</p>
-                  <p><strong>Date of Last Farrier Care:</strong> ${lastCare}</p>
-                  <p><strong>History of Laminitis:</strong> ${lamHistory}</p>
-                  <p><strong>Special Farrier Needs:</strong> ${specialNeeds}</p>
+                <p><strong>Horse #${index + 1} Name:</strong> ${horse.name}</p>
+                <p><strong>Breed:</strong> ${horse.breed}</p>
+                <p><strong>Occupation:</strong> ${horse.occupation}</p>
+                <p><strong>Date of Last Farrier Care:</strong> ${horse.lastCare}</p>
+                <p><strong>History of Laminitis:</strong> ${horse.laminitisHistory}</p>
+                <p><strong>Special Farrier Needs:</strong> ${horse.specialNeeds}</p>
               </div>
-          `;
-      });
-  
-      reviewDetailsDiv.appendChild(horseSection);
+            `;
+          });
+          reviewDetailsDiv.appendChild(horseSection);
   
       // Append Edit Button Below Horse Info
       const editHorseBtn = document.createElement('button');

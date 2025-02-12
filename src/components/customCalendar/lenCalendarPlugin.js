@@ -302,22 +302,27 @@ export function initCustomCalendar(container, options = {}) {
   function positionTimeSlotPopup(cell, popup, rowIndex) {
     const rect = cell.getBoundingClientRect();
     const colIndex = [...cell.parentElement.children].indexOf(cell);
-
+  
     // Display the popup first to ensure offsetWidth is correctly calculated
     popup.style.display = 'block';
-
-    // Force the browser to compute styles (reflow) to get accurate offsetWidth
-    void popup.offsetWidth; // This line forces a reflow
-
-    if (colIndex === 0 || colIndex === 1) {
-      // Sunday (colIndex 0) and Monday (colIndex 1): position to the right
+    // Force a reflow to ensure popup.offsetWidth is updated
+    void popup.offsetWidth;
+  
+    // Check if we're on mobile (using the same max-width as your media query)
+    const isMobile = window.innerWidth <= 575.98;
+    // On mobile, the first three cells should show the popup to the right;
+    // on desktop, it's the first two cells.
+    const rightThreshold = isMobile ? 3 : 2;
+  
+    if (colIndex < rightThreshold) {
+      // For the designated cells: position popup to the right
       popup.style.left = `${rect.right + 10}px`;
     } else {
-      // Other days: position to the left
+      // For all other cells: position popup to the left
       popup.style.left = `${rect.left - popup.offsetWidth - 10}px`;
     }
-
-    // **4. Dynamic Vertical Alignment Based on Row Position**
+  
+    // Dynamic Vertical Alignment Based on Row Position
     if (rowIndex < 3) {
       // Top three rows: align popup's top with cell's top
       popup.style.top = `${rect.top}px`;
@@ -325,7 +330,7 @@ export function initCustomCalendar(container, options = {}) {
       // Last three rows: align popup's bottom with cell's bottom
       popup.style.top = `${rect.bottom - popup.offsetHeight}px`;
     }
-  }
+  }  
 
   // Helper functions for time formatting
   function formatTime(hour) {

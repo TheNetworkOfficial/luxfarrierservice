@@ -320,4 +320,6 @@ document.addEventListener('DOMContentLoaded', function() {
     step3.style.display = 'block';
     window.scrollTo(0, 0);
   });
+  
+  window.mobileHorseData = mobileHorseData;
 });

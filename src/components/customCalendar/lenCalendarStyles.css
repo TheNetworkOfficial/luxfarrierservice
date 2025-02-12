@@ -294,7 +294,6 @@
   /* Ensure the calendar container never overflows horizontally */
   #calendar-app {
     width: 100%;
-    max-height: 60vh;       /* Reduced from 80vh for mobile */
     margin: 10px auto;      /* Some margin for breathing room */
     border-width: 1px;      /* Thinner border for smaller screens */
     padding: 5px;           /* Less padding for a compact look */
@@ -331,7 +330,7 @@
   /* Calendar cells: reduce padding and font size, and force text to not overflow */
   .calendar-cell {
     padding: 4px 2px;
-    font-size: 0.75rem;
+    font-size: 0.6rem;
     align-items: flex-start;
     /* Force uniform cell widths: with grid-template-columns in the row, each cell is 1fr.
        But if content were to force expansion, these rules will prevent it. */
@@ -362,7 +361,7 @@
   
   /* Time slot popup: adjust dimensions and font size */
   .time-slot-popup {
-    width: 200px;
+    width: 170px;
     font-size: 0.75rem;
   }
 }
