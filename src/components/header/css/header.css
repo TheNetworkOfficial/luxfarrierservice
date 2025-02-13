@@ -142,11 +142,6 @@
     cursor: pointer;
     display: block; /* Ensure it's visible */
   }
-
-  .footer-extra {
-    display: none;
-  }
-
   .mobile-footer-extra {
     padding-top: 20px;
     border-top: 1px solid #444;
